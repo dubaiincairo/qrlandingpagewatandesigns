@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1F1A14">
+    <meta name="description" content="Welcome to Watan Designs — A Saudi journey of creativity that touches your dreams. Since 1993.">
+    <title>Welcome to Watan Designs</title>
+    <link rel="icon" type="image/jpeg" href="https://watandesigns.sa/wp-content/uploads/2024/05/favicon.jpeg">
+
+    <meta property="og:title" content="Welcome to Watan Designs">
+    <meta property="og:description" content="A Saudi journey of creativity that touches your dreams. Since 1993.">
+    <meta property="og:image" content="https://watandesigns.sa/wp-content/uploads/2024/04/0437634d-89a9-48c2-b4c5-5915cbb40535.jpeg">
+    <meta property="og:url" content="https://watandesigns.sa/welcome/">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream:      #FAF7F2;
+            --card-white:    #FFFFFF;
+            --text-primary:  #1F1A14;
+            --text-muted:    #6B6157;
+            --text-faint:    #9A9089;
+            --accent-gold:   #A07B3F;
+            --accent-gold-lt:#C8A063;
+            --accent-gold-dk:#8E6B33;
+            --accent-dark:   #2B2B2B;
+            --border-soft:   #EDE6D8;
+            --chip-bg:       #F7F2E8;
+            --shadow-soft:   0 10px 40px rgba(31, 26, 20, 0.08);
+            --shadow-hover:  0 14px 50px rgba(31, 26, 20, 0.14);
+            --ease-luxury:   cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            min-height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-primary);
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
+            padding:
+                max(24px, env(safe-area-inset-top))
+                max(20px, env(safe-area-inset-right))
+                max(24px, env(safe-area-inset-bottom))
+                max(20px, env(safe-area-inset-left));
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient drifting gradient backdrop */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            width: 600px; height: 600px;
+            top: -200px; left: -200px;
+            background: rgba(160, 123, 63, 0.08);
+            animation: drift1 60s ease-in-out infinite;
+        }
+
+        body::after {
+            width: 500px; height: 500px;
+            bottom: -150px; right: -150px;
+            background: rgba(160, 123, 63, 0.06);
+            animation: drift2 75s ease-in-out infinite;
+        }
+
+        @keyframes drift1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50%      { transform: translate(80px, 60px) scale(1.1); }
+        }
+
+        @keyframes drift2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50%      { transform: translate(-60px, -80px) scale(1.15); }
+        }
+
+        .card {
+            width: 100%;
+            max-width: 460px;
+            background: var(--card-white);
+            border-radius: 20px;
+            padding: 44px 30px 28px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-soft);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(20px) scale(0.97);
+            animation: cardEnter 1s var(--ease-luxury) 0.1s forwards;
+        }
+
+        @keyframes cardEnter {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Decorative corner ornaments */
+        .corner {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            opacity: 0;
+            animation: fadeIn 0.8s var(--ease-luxury) 1.8s forwards;
+        }
+        .corner svg { width: 100%; height: 100%; display: block; }
+        .corner.tl { top: 14px; left: 14px; }
+        .corner.tr { top: 14px; right: 14px; transform: rotate(90deg); }
+        .corner.bl { bottom: 14px; left: 14px; transform: rotate(-90deg); }
+        .corner.br { bottom: 14px; right: 14px; transform: rotate(180deg); }
+
+        /* "EST. 1993" heritage badge */
+        .eyebrow {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateY(8px);
+            animation: fadeUp 0.8s var(--ease-luxury) 0.4s forwards;
+        }
+
+        /* Decorative ornamental flourish */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeIn 0.8s var(--ease-luxury) 0.55s forwards;
+        }
+
+        .ornament .line {
+            height: 1px;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold) 50%, transparent);
+        }
+
+        .ornament .diamond {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            transform: rotate(45deg);
+            border-radius: 1px;
+            animation: diamondPulse 4s ease-in-out infinite 2.5s;
+        }
+
+        @keyframes diamondPulse {
+            0%, 100% { transform: rotate(45deg) scale(1); opacity: 1; }
+            50%      { transform: rotate(45deg) scale(1.25); opacity: 0.85; }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeUp 0.8s var(--ease-luxury) 0.7s forwards;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+            font-weight: 400;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeUp 0.8s var(--ease-luxury) 0.85s forwards;
+            padding: 0 8px;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Service chips */
+        .services {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeIn 0.8s var(--ease-luxury) 1s forwards;
+        }
+
+        .chip {
+            font-size: 9.5px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            background: var(--chip-bg);
+            border: 1px solid var(--border-soft);
+            padding: 5px 9px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: all 0.3s var(--ease-luxury);
+        }
+
+        .chip:hover {
+            color: var(--accent-gold-dk);
+            border-color: var(--accent-gold);
+            background: #FFFFFF;
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 0 auto 26px;
+            border-radius: 2px;
+            animation: drawDivider 0.9s var(--ease-luxury) 1.1s forwards;
+        }
+
+        @keyframes drawDivider {
+            to { width: 56px; }
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 17px 22px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1.5px solid transparent;
+            min-height: 56px;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: transform 0.3s var(--ease-luxury),
+                        box-shadow 0.3s var(--ease-luxury),
+                        background-color 0.3s ease,
+                        border-color 0.3s ease;
+        }
+
+        .btn-primary { animation: fadeUp 0.8s var(--ease-luxury) 1.3s forwards; }
+        .btn-review  { animation: fadeUp 0.8s var(--ease-luxury) 1.45s forwards; }
+
+        .btn svg {
+            flex-shrink: 0;
+            transition: transform 0.3s var(--ease-luxury);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+            transition: left 0.7s var(--ease-luxury);
+            pointer-events: none;
+        }
+
+        .btn:hover::after,
+        .btn:focus-visible::after { left: 100%; }
+
+        .btn:hover svg,
+        .btn:focus-visible svg { transform: scale(1.12); }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 3px;
+        }
+
+        .btn-primary {
+            background: var(--accent-dark);
+            color: #FFFFFF;
+            border-color: var(--accent-dark);
+        }
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+            background: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .btn-primary:active { transform: translateY(0); }
+
+        .btn-review {
+            background: var(--accent-gold);
+            color: #FFFFFF;
+            border-color: var(--accent-gold);
+        }
+        .btn-review:hover,
+        .btn-review:focus-visible {
+            background: var(--accent-gold-dk);
+            border-color: var(--accent-gold-dk);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 50px rgba(160, 123, 63, 0.28);
+        }
+        .btn-review:active { transform: translateY(0); }
+
+        /* Trust line: stars + testimonial count */
+        .trust {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border-soft);
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: fadeIn 0.8s var(--ease-luxury) 1.6s forwards;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+            color: var(--accent-gold);
+        }
+
+        .stars svg { width: 14px; height: 14px; }
+
+        .trust-text {
+            font-size: 11.5px;
+            color: var(--text-faint);
+            letter-spacing: 0.03em;
+        }
+
+        /* Contact */
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border-soft);
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fadeIn 0.8s var(--ease-luxury) 1.7s forwards;
+        }
+
+        .contact a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .contact a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s var(--ease-luxury), left 0.3s var(--ease-luxury);
+        }
+
+        .contact a:hover { color: var(--accent-gold); }
+        .contact a:hover::before { width: 100%; left: 0; }
+
+        .footer {
+            font-size: 10px;
+            color: var(--text-muted);
+            opacity: 0;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            animation: fadeFooter 0.8s var(--ease-luxury) 1.85s forwards;
+        }
+
+        @keyframes fadeFooter {
+            to { opacity: 0.65; }
+        }
+
+        /* Floating WhatsApp action button */
+        .wa-fab {
+            position: fixed;
+            bottom: max(20px, env(safe-area-inset-bottom));
+            right: max(20px, env(safe-area-inset-right));
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow:
+                0 6px 20px rgba(37, 211, 102, 0.35),
+                0 2px 6px rgba(0, 0, 0, 0.12);
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation:
+                fabEnter 0.7s var(--ease-luxury) 2.2s forwards,
+                fabPulse 2.8s ease-in-out 4s infinite;
+            transition: transform 0.25s var(--ease-luxury), box-shadow 0.25s var(--ease-luxury);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .wa-fab svg {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.25s var(--ease-luxury);
+        }
+
+        .wa-fab:hover,
+        .wa-fab:focus-visible {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow:
+                0 10px 28px rgba(37, 211, 102, 0.45),
+                0 3px 8px rgba(0, 0, 0, 0.15);
+            outline: none;
+            animation-play-state: paused;
+        }
+
+        .wa-fab:hover svg,
+        .wa-fab:focus-visible svg { transform: scale(1.1); }
+
+        .wa-fab:active { transform: translateY(-1px) scale(1); }
+
+        .wa-fab:focus-visible {
+            outline: 3px solid rgba(37, 211, 102, 0.4);
+            outline-offset: 3px;
+        }
+
+        @keyframes fabEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Subtle pulsing ring to draw attention without being annoying */
+        .wa-fab::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid #25D366;
+            opacity: 0;
+            animation: fabRing 2.8s ease-out 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fabRing {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            70%  { transform: scale(1.5); opacity: 0;   }
+            100% { transform: scale(1.5); opacity: 0;   }
+        }
+
+        @keyframes fabPulse {
+            0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35), 0 2px 6px rgba(0, 0, 0, 0.12); }
+            50%      { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55), 0 2px 6px rgba(0, 0, 0, 0.12); }
+        }
+
+        /* Tablet and most modern phones (≥ 380px wide) */
+        @media (max-width: 420px) {
+            .card { padding: 40px 22px 24px; }
+            .corner { width: 22px; height: 22px; top: 10px; left: 10px; }
+            .corner.tr { top: 10px; right: 10px; left: auto; }
+            .corner.bl { bottom: 10px; left: 10px; top: auto; }
+            .corner.br { bottom: 10px; right: 10px; left: auto; top: auto; }
+            h1 { font-size: 26px; }
+            .btn { font-size: 15px; padding: 16px 18px; }
+            .chip { font-size: 9px; padding: 4px 8px; letter-spacing: 0.03em; }
+            .services { gap: 4px; }
+            .wa-fab { width: 54px; height: 54px; bottom: max(16px, env(safe-area-inset-bottom)); right: max(16px, env(safe-area-inset-right)); }
+            .wa-fab svg { width: 26px; height: 26px; }
+        }
+
+        /* Older / smaller phones (< 380px): allow chips to wrap as fallback */
+        @media (max-width: 379px) {
+            .card { padding: 36px 18px 22px; }
+            .services { flex-wrap: wrap; gap: 5px; }
+            .chip { font-size: 9.5px; padding: 5px 9px; }
+            h1 { font-size: 24px; }
+            .eyebrow { letter-spacing: 0.2em; font-size: 9.5px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .card, .corner, .eyebrow, .ornament, h1, .tagline, .services, .btn, .trust, .contact, .footer, .wa-fab {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .divider { width: 56px !important; }
+            .footer { opacity: 0.65 !important; }
+            .wa-fab::before { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main">
+
+        <!-- Corner ornaments -->
+        <div class="corner tl" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+        <div class="corner tr" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+        <div class="corner bl" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+        <div class="corner br" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+
+        <div class="eyebrow">Est. 1993 &nbsp;·&nbsp; Riyadh</div>
+
+        <div class="ornament" aria-hidden="true">
+            <span class="line"></span>
+            <span class="diamond"></span>
+            <span class="line"></span>
+        </div>
+
+        <h1>Welcome to Watan Designs</h1>
+        <p class="tagline">A Saudi journey of creativity that touches your dreams</p>
+
+        <div class="services">
+            <span class="chip">Interior Design</span>
+            <span class="chip">Custom Furniture</span>
+            <span class="chip">Project Execution</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="btn-group">
+            <a class="btn btn-primary"
+               href="https://watandesigns.sa/"
+               target="_blank"
+               rel="noopener"
+               aria-label="Visit the Watan Designs website">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                Visit Our Website
+            </a>
+
+            <a class="btn btn-review"
+               href="https://g.page/r/Cduu54JdvyfcEAI/review"
+               target="_blank"
+               rel="noopener"
+               aria-label="Leave a Google review for Watan Designs">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+                Leave a Google Review
+            </a>
+        </div>
+
+        <div class="trust">
+            <div class="stars" aria-label="5 out of 5 stars">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </div>
+            <div class="trust-text">Trusted by hundreds of clients across Saudi Arabia</div>
+        </div>
+
+        <div class="contact">
+            <a href="tel:+966505725070" aria-label="Call Watan Designs">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                +966 50 572 5070
+            </a>
+            <a href="mailto:info@watandesigns.sa" aria-label="Email Watan Designs">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                info@watandesigns.sa
+            </a>
+        </div>
+
+        <div class="footer">
+            Watan Designs &copy; 2026 &nbsp;·&nbsp; Riyadh, Saudi Arabia
+        </div>
+    </main>
+
+    <a class="wa-fab"
+       href="https://wa.me/966505725070?text=Hello%20Watan%20Designs%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services."
+       target="_blank"
+       rel="noopener"
+       aria-label="Chat with Watan Designs on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+</body>
+</html>
