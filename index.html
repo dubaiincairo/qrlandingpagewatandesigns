@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#1F1A14">
-    <meta name="description" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
-    <title>Welcome to WD Group</title>
+    <meta name="description" id="metaDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
+    <title id="pageTitle">Welcome to WD Group</title>
     <link rel="icon" type="image/jpeg" href="https://watandesigns.sa/wp-content/uploads/2024/05/favicon.jpeg">
 
-    <meta property="og:title" content="Welcome to WD Group">
-    <meta property="og:description" content="A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
-    <meta property="og:image" content="https://watandesigns.sa/wp-content/uploads/2024/04/0437634d-89a9-48c2-b4c5-5915cbb40535.jpeg">
-    <meta property="og:url" content="https://wdgroup.sa/">
-    <meta property="og:type" content="website">
+    <meta property="og:title"       id="ogTitle"       content="Welcome to WD Group">
+    <meta property="og:description" id="ogDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
+    <meta property="og:image"       id="ogImage"       content="https://watandesigns.sa/wp-content/uploads/2024/04/0437634d-89a9-48c2-b4c5-5915cbb40535.jpeg">
+    <meta property="og:url"         id="ogUrl"         content="https://qr.watandesigns.sa/">
+    <meta property="og:type"        content="website">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       id="twTitle"       content="Welcome to WD Group">
+    <meta name="twitter:description" id="twDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
+    <meta name="twitter:image"       id="twImage"       content="https://watandesigns.sa/wp-content/uploads/2024/04/0437634d-89a9-48c2-b4c5-5915cbb40535.jpeg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1009,6 +1013,12 @@
 
         // Fallback content shown if Supabase is unreachable. Keep in sync with the seed.
         const DEFAULT_CONTENT = {
+            site: {
+                page_title: 'Welcome to WD Group',
+                meta_description: 'Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.',
+                og_image_url: 'https://watandesigns.sa/wp-content/uploads/2024/04/0437634d-89a9-48c2-b4c5-5915cbb40535.jpeg',
+                og_url: 'https://qr.watandesigns.sa/'
+            },
             home: {
                 eyebrow: 'Est. 1993  ·  Saudi Arabia',
                 title: 'Welcome to WD Group',
@@ -1070,6 +1080,38 @@
         // Tiny dotted-path resolver: getPath(obj, 'home.chips.0')
         function getPath(obj, path) {
             return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+        }
+
+        // SEO / social-share meta tags — updated dynamically for in-browser
+        // visitors. Static HTML in git is what crawlers (Google, FB, Twitter,
+        // WhatsApp) read, so changes only fully propagate after a redeploy.
+        function applySiteMeta(site) {
+            if (!site) return;
+            const setText = (id, value) => {
+                const el = document.getElementById(id);
+                if (el && value) el.textContent = value;
+            };
+            const setAttr = (id, value) => {
+                const el = document.getElementById(id);
+                if (el && value) el.setAttribute('content', value);
+            };
+            if (site.page_title) {
+                setText('pageTitle', site.page_title);
+                setAttr('ogTitle',   site.page_title);
+                setAttr('twTitle',   site.page_title);
+            }
+            if (site.meta_description) {
+                setAttr('metaDescription', site.meta_description);
+                setAttr('ogDescription',   site.meta_description);
+                setAttr('twDescription',   site.meta_description);
+            }
+            if (site.og_image_url) {
+                setAttr('ogImage', site.og_image_url);
+                setAttr('twImage', site.og_image_url);
+            }
+            if (site.og_url) {
+                setAttr('ogUrl', site.og_url);
+            }
         }
 
         // SVG icons (used inside JS-built sector buttons)
@@ -1156,6 +1198,7 @@
             });
 
             applyHomeOrder();
+            applySiteMeta(CONTENT.site);
             buildSector('manufacturing');
             buildSector('hospitality');
         }
