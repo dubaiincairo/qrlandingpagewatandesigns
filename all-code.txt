@@ -1,22 +1,10 @@
-================================================================================
-                  WD GROUP — ALL WEBSITE SOURCE CODE
-                  Single-file dump of the entire project
-                  Repository: dubaiincairo/qrlandingpagewatandesigns
-================================================================================
+WD Group / watandesigns.sa landing page — full source dump
+==========================================================
+Files (in order): index.html, secretadminconsole.html, vercel.json,
+robots.txt, README.md. QR pngs/svgs in qr-assets/ are not included.
 
-This file contains the full source of every text-based file in the project:
-  1. index.html              — public landing page
-  2. secretadminconsole.html — content management console
-  3. vercel.json             — Vercel deploy config
-  4. robots.txt              — search-engine directives
-  5. README.md               — deployment notes
 
-Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
-
-================================================================================
-                  FILE 1 of 5 :: index.html
-================================================================================
-
+--- index.html ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,15 +15,15 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
     <title id="pageTitle">Welcome to WD Group</title>
     <link rel="icon" type="image/jpeg" href="https://watandesigns.sa/wp-content/uploads/2024/05/favicon.jpeg">
 
-    <meta property="og:title"       id="ogTitle"       content="Welcome to WD Group">
+    <meta property="og:title" id="ogTitle" content="Welcome to WD Group">
     <meta property="og:description" id="ogDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
-    <meta property="og:image"       id="ogImage"       content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
-    <meta property="og:url"         id="ogUrl"         content="https://qr.watandesigns.sa/">
-    <meta property="og:type"        content="website">
-    <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:title"       id="twTitle"       content="Welcome to WD Group">
+    <meta property="og:image" id="ogImage" content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
+    <meta property="og:url" id="ogUrl" content="https://qr.watandesigns.sa/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twTitle" content="Welcome to WD Group">
     <meta name="twitter:description" id="twDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
-    <meta name="twitter:image"       id="twImage"       content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
+    <meta name="twitter:image" id="twImage" content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +79,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             overflow-x: hidden;
         }
 
-        /* Ambient drifting gradient backdrop */
         body::before,
         body::after {
             content: '';
@@ -139,7 +126,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             z-index: 1;
         }
 
-        /* View transitions */
         .view {
             display: none;
             opacity: 0;
@@ -153,7 +139,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* First-load card entry */
         .card {
             opacity: 0;
             transform: translateY(20px) scale(0.97);
@@ -163,7 +148,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Decorative corner ornaments */
         .corner {
             position: absolute;
             width: 28px;
@@ -177,7 +161,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         .corner.bl { bottom: 14px; left: 14px; transform: rotate(-90deg); }
         .corner.br { bottom: 14px; right: 14px; transform: rotate(180deg); }
 
-        /* Heritage badge */
         .eyebrow {
             font-size: 10px;
             font-weight: 600;
@@ -187,7 +170,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             margin-bottom: 16px;
         }
 
-        /* Decorative ornamental flourish */
         .ornament {
             display: flex;
             align-items: center;
@@ -238,7 +220,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* Service chips */
         .services {
             display: flex;
             flex-wrap: nowrap;
@@ -451,7 +432,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             color: #FFFFFF;
         }
 
-        /* Sector selector card (home view) */
         .sector-btn {
             display: flex;
             flex-direction: column;
@@ -481,7 +461,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             text-transform: uppercase;
         }
 
-        /* Back / page header */
         .page-head {
             display: flex;
             align-items: center;
@@ -522,7 +501,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             font-weight: 600;
         }
 
-        /* Trust line: stars + testimonial count */
         .trust {
             display: flex;
             flex-direction: column;
@@ -547,7 +525,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             letter-spacing: 0.03em;
         }
 
-        /* Contact */
         .contact {
             display: flex;
             flex-direction: column;
@@ -592,7 +569,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             text-transform: uppercase;
         }
 
-        /* Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -684,7 +660,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         }
         .modal .btn { padding: 15px 18px; font-size: 15px; min-height: 50px; }
 
-        /* Floating WhatsApp action button */
         .wa-fab {
             position: fixed;
             bottom: max(20px, env(safe-area-inset-bottom));
@@ -805,7 +780,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 <body>
     <main class="card" role="main">
 
-        <!-- Corner ornaments -->
         <div class="corner tl" aria-hidden="true">
             <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
                 <path d="M2 14 L2 2 L14 2"/>
@@ -831,7 +805,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             </svg>
         </div>
 
-        <!-- ============ HOME VIEW ============ -->
         <section class="view active" id="view-home" aria-label="WD Group home">
             <div class="eyebrow" data-c="home.eyebrow">Est. 1993 &nbsp;·&nbsp; Saudi Arabia</div>
 
@@ -915,7 +888,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             </div>
         </section>
 
-        <!-- ============ MANUFACTURING VIEW ============ -->
         <section class="view" id="view-manufacturing" aria-label="Furniture and Factories" hidden>
             <div class="page-head">
                 <button class="back-btn" type="button" data-go="home" aria-label="Back to WD Group home">
@@ -938,7 +910,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             <div class="divider"></div>
 
             <div class="btn-group" id="manufacturing-buttons">
-                <!-- Populated by JS -->
             </div>
 
             <div class="footer" data-c="sectors.manufacturing.page_footer">
@@ -946,7 +917,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             </div>
         </section>
 
-        <!-- ============ HOSPITALITY VIEW ============ -->
         <section class="view" id="view-hospitality" aria-label="Hospitality" hidden>
             <div class="page-head">
                 <button class="back-btn" type="button" data-go="home" aria-label="Back to WD Group home">
@@ -969,7 +939,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             <div class="divider"></div>
 
             <div class="btn-group" id="hospitality-buttons">
-                <!-- Populated by JS -->
             </div>
 
             <div class="footer" data-c="sectors.hospitality.page_footer">
@@ -979,7 +948,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 
     </main>
 
-    <!-- ============ REVIEW POPUP ============ -->
     <div class="modal-overlay" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal">
             <button class="modal-close" type="button" id="modalClose" aria-label="Close">
@@ -1024,13 +992,10 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
     </a>
 
     <script>
-        // ============================================================
-        //  WD Group — Live content from Supabase, with safe fallback
-        // ============================================================
         const SUPABASE_URL = 'https://tblfnxaedhmwydjqngnb.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_84F0DGqG8-A01ecxVMQ0jA_hydWAwtw';
 
-        // Fallback content shown if Supabase is unreachable. Keep in sync with the seed.
+        // shown if supabase is down — keep this roughly in sync
         const DEFAULT_CONTENT = {
             site: {
                 page_title: 'Welcome to WD Group',
@@ -1096,14 +1061,11 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 
         let CONTENT = DEFAULT_CONTENT;
 
-        // Tiny dotted-path resolver: getPath(obj, 'home.chips.0')
         function getPath(obj, path) {
             return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
         }
 
-        // SEO / social-share meta tags — updated dynamically for in-browser
-        // visitors. Static HTML in git is what crawlers (Google, FB, Twitter,
-        // WhatsApp) read, so changes only fully propagate after a redeploy.
+        // note: crawlers see the static HTML, so SEO edits only land after redeploy
         function applySiteMeta(site) {
             if (!site) return;
             const setText = (id, value) => {
@@ -1133,19 +1095,17 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             }
         }
 
-        // SVG icons (used inside JS-built sector buttons)
         const ICON_GLOBE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
-        const ICON_STAR  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
-        const ICON_CHEV  = '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
+        const ICON_STAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+        const ICON_CHEV = '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
 
         function escapeHtml(s) {
             return String(s == null ? '' : s)
                 .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
-        function escapeAttr(s) { return escapeHtml(s); }
+        const escapeAttr = escapeHtml;
 
-        // Build all buttons (website + items) for a sector
         function buildSector(sectorKey) {
             const sector = getPath(CONTENT, `sectors.${sectorKey}`) || {};
             const items  = sector.items || [];
@@ -1190,18 +1150,16 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             container.innerHTML = html.join('');
         }
 
-        // Reorder home sector cards based on content.home.sectors_order
         function applyHomeOrder() {
-            const wrap  = document.getElementById('home-sectors');
+            const wrap = document.getElementById('home-sectors');
             const order = (CONTENT.home && CONTENT.home.sectors_order) || ['manufacturing', 'hospitality'];
             if (!wrap) return;
             order.forEach(key => {
                 const card = wrap.querySelector(`[data-sector-card="${key}"]`);
-                if (card) wrap.appendChild(card); // moves to end in order
+                if (card) wrap.appendChild(card);
             });
         }
 
-        // Apply content to all data-c / data-c-href bindings, then rebuild lists
         function applyContent(content) {
             CONTENT = content || DEFAULT_CONTENT;
 
@@ -1222,7 +1180,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             buildSector('hospitality');
         }
 
-        // Initial paint with defaults, then async refresh from Supabase
         applyContent(DEFAULT_CONTENT);
 
         fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data`, {
@@ -1238,11 +1195,8 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             .then(rows => {
                 if (rows && rows[0] && rows[0].data) applyContent(rows[0].data);
             })
-            .catch(() => { /* keep defaults */ });
+            .catch(() => {});
 
-        // ============================================================
-        //  View navigation
-        // ============================================================
         const views = document.querySelectorAll('.view');
 
         function showView(name, push = true) {
@@ -1304,15 +1258,12 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         const initial = location.hash.replace('#', '');
         if (['manufacturing', 'hospitality'].includes(initial)) showView(initial, false);
 
-        // ============================================================
-        //  Review popup
-        // ============================================================
-        const modal       = document.getElementById('reviewModal');
-        const modalClose  = document.getElementById('modalClose');
-        const modalTitle  = document.getElementById('modalTitle');
-        const modalLoc    = document.getElementById('modalLocation');
+        const modal = document.getElementById('reviewModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalLoc = document.getElementById('modalLocation');
         const modalReview = document.getElementById('modalReview');
-        const modalWeb    = document.getElementById('modalWebsite');
+        const modalWeb = document.getElementById('modalWebsite');
 
         let lastFocused = null;
 
@@ -1367,10 +1318,7 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 </html>
 
 
-================================================================================
-                  FILE 2 of 5 :: secretadminconsole.html
-================================================================================
-
+--- secretadminconsole.html ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1415,7 +1363,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             padding: 24px 16px 80px;
         }
 
-        /* Login screen */
         .auth-shell {
             min-height: calc(100vh - 48px);
             min-height: calc(100dvh - 48px);
@@ -1522,7 +1469,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             transition: opacity 0.2s ease;
         }
 
-        /* Inline notice (e.g. "redeploy required") inside a group */
         .notice {
             display: flex; gap: 10px; align-items: flex-start;
             padding: 12px 14px;
@@ -1549,7 +1495,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             font-size: 11.5px;
         }
 
-        /* Image upload */
         .upload-row {
             display: flex; align-items: center; gap: 10px;
             margin-bottom: 8px;
@@ -1580,7 +1525,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         .msg.success { background: #E6F4EC; color: var(--success); border: 1px solid #BFE2CE; }
         .msg.info    { background: #FAF3E1; color: var(--gold-dk); border: 1px solid #ECD9A6; }
 
-        /* App layout */
         .app {
             max-width: 760px; margin: 0 auto;
         }
@@ -1642,11 +1586,7 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             .tab { font-size: 11.5px; padding: 9px 4px; letter-spacing: -0.01em; }
         }
 
-        /* Reserve room for the sticky save bar so it never covers the
-           last form group in a panel */
-        .panel { padding-bottom: 140px; }
-
-        .panel { display: none; }
+        .panel { padding-bottom: 140px; display: none; }
         .panel.active { display: block; }
 
         .group {
@@ -1667,7 +1607,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             margin-bottom: 16px;
         }
 
-        /* Sortable list */
         .sortable {
             display: flex; flex-direction: column; gap: 10px;
             margin-bottom: 8px;
@@ -1772,7 +1711,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 </head>
 <body>
 
-    <!-- ============ AUTH VIEW ============ -->
     <div class="auth-shell" id="authShell">
         <div class="auth-card">
             <div class="auth-eyebrow" id="authEyebrow">Sign in</div>
@@ -1798,7 +1736,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         </div>
     </div>
 
-    <!-- ============ APP VIEW ============ -->
     <div class="app" id="app" style="display:none;">
         <div class="topbar">
             <div class="brand">
@@ -1817,7 +1754,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             <button class="tab" data-tab="settings" type="button">Settings</button>
         </div>
 
-        <!-- HOME PANEL -->
         <div class="panel active" id="panel-home">
             <div class="group">
                 <div class="group-title">Hero text</div>
@@ -1851,7 +1787,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
                 <div class="group-sub">Drag to change which sector appears first on the home view</div>
 
                 <div class="home-cards-list" id="homeCardsList">
-                    <!-- populated by JS -->
                 </div>
             </div>
 
@@ -1935,7 +1870,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             </div>
         </div>
 
-        <!-- MANUFACTURING PANEL -->
         <div class="panel" id="panel-manufacturing">
             <div class="group">
                 <div class="group-title">Sector card (home page)</div>
@@ -1986,12 +1920,10 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
                 <div class="group-sub">Drag to reorder. Each card shows on the Manufacturing page.</div>
 
                 <div class="sortable" id="manufacturing-items">
-                    <!-- populated by JS -->
                 </div>
             </div>
         </div>
 
-        <!-- HOSPITALITY PANEL -->
         <div class="panel" id="panel-hospitality">
             <div class="group">
                 <div class="group-title">Sector card (home page)</div>
@@ -2042,12 +1974,10 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
                 <div class="group-sub">Drag to reorder. Each card shows on the Hospitality page.</div>
 
                 <div class="sortable" id="hospitality-items">
-                    <!-- populated by JS -->
                 </div>
             </div>
         </div>
 
-        <!-- MODAL/POPUP PANEL -->
         <div class="panel" id="panel-modal">
             <div class="group">
                 <div class="group-title">Review popup</div>
@@ -2068,7 +1998,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             </div>
         </div>
 
-        <!-- SETTINGS PANEL -->
         <div class="panel" id="panel-settings">
             <div class="group">
                 <div class="group-title">Change password</div>
@@ -2101,7 +2030,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             </div>
         </div>
 
-        <!-- Sticky save bar -->
         <div class="save-bar">
             <button class="btn btn-ghost" id="discardBtn" type="button">Discard changes</button>
             <button class="btn btn-primary" id="saveBtn" type="button">Save changes</button>
@@ -2111,16 +2039,10 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js" crossorigin="anonymous"></script>
 
     <script>
-        // ============================================================
-        //  Config
-        // ============================================================
         const SUPABASE_URL = 'https://tblfnxaedhmwydjqngnb.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_84F0DGqG8-A01ecxVMQ0jA_hydWAwtw';
-        const TOKEN_KEY    = 'wdgroup_admin_token';
+        const TOKEN_KEY = 'wdgroup_admin_token';
 
-        // ============================================================
-        //  Tiny helpers
-        // ============================================================
         function $(sel, root) { return (root || document).querySelector(sel); }
         function $$(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
         function getPath(obj, path) { return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj); }
@@ -2187,21 +2109,18 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             return rows[0] && rows[0].data ? rows[0].data : null;
         }
 
-        // ============================================================
-        //  Auth flow
-        // ============================================================
-        const authShell  = $('#authShell');
-        const appShell   = $('#app');
-        const authForm   = $('#authForm');
-        const authTitle  = $('#authTitle');
-        const authSub    = $('#authSub');
-        const authBtn    = $('#authSubmit');
-        const authMsg    = $('#authMsg');
-        const authEmail  = $('#authEmail');
-        const authPass   = $('#authPassword');
-        const authConf   = $('#authConfirm');
-        const authConfF  = $('#authConfirmField');
-        const authEye    = $('#authEyebrow');
+        const authShell = $('#authShell');
+        const appShell = $('#app');
+        const authForm = $('#authForm');
+        const authTitle = $('#authTitle');
+        const authSub = $('#authSub');
+        const authBtn = $('#authSubmit');
+        const authMsg = $('#authMsg');
+        const authEmail = $('#authEmail');
+        const authPass = $('#authPassword');
+        const authConf = $('#authConfirm');
+        const authConfF = $('#authConfirmField');
+        const authEye = $('#authEyebrow');
 
         let isInitialSetup = false;
 
@@ -2268,11 +2187,9 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             }
         });
 
-        // ============================================================
-        //  App: load content into form
-        // ============================================================
-        let original  = null;  // last saved snapshot
-        let working   = null;  // editable copy
+        // original = last saved, working = currently edited copy
+        let original = null;
+        let working = null;
         const saveState = $('#saveState');
 
         function setSaveState(kind, text) {
@@ -2288,11 +2205,10 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         }
 
         function applyToForm() {
-            // Simple input/textarea bindings
             $$('[data-bind]').forEach(el => {
                 if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') return;
                 const path = el.getAttribute('data-bind');
-                const val  = getPath(working, path);
+                const val = getPath(working, path);
                 el.value = (val == null) ? '' : String(val);
             });
 
@@ -2302,7 +2218,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             renderItems('hospitality');
         }
 
-        // Simple field listeners
         function wireFieldListeners() {
             $$('[data-bind]').forEach(el => {
                 if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') return;
@@ -2315,9 +2230,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             wireImageUpload();
         }
 
-        // ============================================================
-        //  Social image upload
-        // ============================================================
         const SOCIAL_BUCKET = 'wdgroup-social';
 
         function refreshImagePreview() {
@@ -2364,8 +2276,8 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
                 try {
                     const body = await r.json();
                     if (body && body.message) msg = body.message;
-                    if (body && body.error)   msg = msg + ' — ' + body.error;
-                } catch (_) { /* keep default */ }
+                    if (body && body.error) msg = msg + ' — ' + body.error;
+                } catch (_) {}
                 const err = new Error(msg);
                 err.status = r.status;
                 throw err;
@@ -2404,22 +2316,19 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             });
         }
 
-        // ============================================================
-        //  Home sector cards reorder
-        // ============================================================
         const SECTOR_META = {
             manufacturing: { pillClass: '',     defaultLabel: 'Furniture & Factories' },
             hospitality:   { pillClass: 'blue', defaultLabel: 'Hospitality' }
         };
 
         function renderHomeCardsList() {
-            const wrap  = $('#homeCardsList');
+            const wrap = $('#homeCardsList');
             const order = (working.home && working.home.sectors_order) || ['manufacturing', 'hospitality'];
             wrap.innerHTML = '';
             order.forEach(key => {
-                const meta  = SECTOR_META[key] || {};
+                const meta = SECTOR_META[key] || {};
                 const title = (working.sectors && working.sectors[key] && working.sectors[key].card_title) || meta.defaultLabel || key;
-                const row   = document.createElement('div');
+                const row = document.createElement('div');
                 row.className = 'home-card-row';
                 row.setAttribute('data-key', key);
                 row.innerHTML = `
@@ -2447,11 +2356,8 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             });
         }
 
-        // ============================================================
-        //  Items (factories / properties) — fields + drag-and-drop
-        // ============================================================
         function renderItems(sectorKey) {
-            const wrap  = $(`#${sectorKey}-items`);
+            const wrap = $(`#${sectorKey}-items`);
             const items = (working.sectors && working.sectors[sectorKey] && working.sectors[sectorKey].items) || [];
             wrap.innerHTML = '';
 
@@ -2503,7 +2409,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
                     const newOrder = $$('.sort-item', wrap).map(r => Number(r.getAttribute('data-idx')));
                     const oldItems = working.sectors[sectorKey].items.slice();
                     working.sectors[sectorKey].items = newOrder.map(i => oldItems[i]);
-                    // Reset the data-idx attributes to reflect the new order
                     $$('.sort-item', wrap).forEach((r, i) => r.setAttribute('data-idx', String(i)));
                     markDirty();
                 }
@@ -2517,9 +2422,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
         }
         function escapeAttr(s) { return escapeHtml(s); }
 
-        // ============================================================
-        //  Tabs
-        // ============================================================
         $$('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 const name = tab.getAttribute('data-tab');
@@ -2529,9 +2431,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             });
         });
 
-        // ============================================================
-        //  Save / Discard
-        // ============================================================
         $('#saveBtn').addEventListener('click', async () => {
             const token = localStorage.getItem(TOKEN_KEY);
             if (!token) { logout(); return; }
@@ -2558,7 +2457,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             setSaveState('saved', 'Saved');
         });
 
-        // Warn if leaving with unsaved changes
         window.addEventListener('beforeunload', (e) => {
             if (working && original && !deepEqual(working, original)) {
                 e.preventDefault();
@@ -2566,14 +2464,11 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             }
         });
 
-        // ============================================================
-        //  Password change
-        // ============================================================
         $('#pwSubmit').addEventListener('click', async () => {
-            const cur  = $('#pw-current').value;
+            const cur = $('#pw-current').value;
             const next = $('#pw-new').value;
             const conf = $('#pw-confirm').value;
-            const msg  = $('#pwMsg');
+            const msg = $('#pwMsg');
             hideMsg(msg);
             if (!cur || !next) { showMsg(msg, 'Fill all three fields.', 'error'); return; }
             if (next.length < 6) { showMsg(msg, 'New password must be at least 6 characters.', 'error'); return; }
@@ -2594,9 +2489,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             }
         });
 
-        // ============================================================
-        //  Logout
-        // ============================================================
         function logout() {
             const token = localStorage.getItem(TOKEN_KEY);
             localStorage.removeItem(TOKEN_KEY);
@@ -2606,8 +2498,8 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             appShell.style.display = 'none';
             authShell.style.display = '';
             authEmail.value = '';
-            authPass.value  = '';
-            authConf.value  = '';
+            authPass.value = '';
+            authConf.value = '';
             detectAuthMode();
         }
         $('#logoutBtn').addEventListener('click', () => {
@@ -2617,9 +2509,6 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
             logout();
         });
 
-        // ============================================================
-        //  Bootstrap
-        // ============================================================
         async function enterApp() {
             try {
                 const data = await loadContent();
@@ -2646,7 +2535,7 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
                         await enterApp();
                         return;
                     }
-                } catch (_) { /* fall through to login */ }
+                } catch (_) {}
                 localStorage.removeItem(TOKEN_KEY);
             }
             await detectAuthMode();
@@ -2656,10 +2545,7 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 </html>
 
 
-================================================================================
-                  FILE 3 of 5 :: vercel.json
-================================================================================
-
+--- vercel.json ---
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
@@ -2693,19 +2579,13 @@ Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
 }
 
 
-================================================================================
-                  FILE 4 of 5 :: robots.txt
-================================================================================
-
+--- robots.txt ---
 User-agent: *
 Disallow: /secretadminconsole
 Disallow: /secretadminconsole.html
 
 
-================================================================================
-                  FILE 5 of 5 :: README.md
-================================================================================
-
+--- README.md ---
 # Watan Designs — Vercel Deployment
 
 This folder contains everything needed to deploy the QR landing page to Vercel.
@@ -2774,8 +2654,3 @@ The QR currently encodes `https://watandesigns.sa/welcome/`. After deploying to 
 **Got the "Vercel" branding on the deploy:** that only happens on free plan deploys when you don't have a custom domain. After you add `welcome.watandesigns.sa` it goes away.
 
 **Want to change the URL later:** add a new domain in Vercel settings, delete the old one. DNS only — no rebuild needed.
-
-
-================================================================================
-                              END OF FILE
-================================================================================

@@ -8,15 +8,15 @@
     <title id="pageTitle">Welcome to WD Group</title>
     <link rel="icon" type="image/jpeg" href="https://watandesigns.sa/wp-content/uploads/2024/05/favicon.jpeg">
 
-    <meta property="og:title"       id="ogTitle"       content="Welcome to WD Group">
+    <meta property="og:title" id="ogTitle" content="Welcome to WD Group">
     <meta property="og:description" id="ogDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
-    <meta property="og:image"       id="ogImage"       content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
-    <meta property="og:url"         id="ogUrl"         content="https://qr.watandesigns.sa/">
-    <meta property="og:type"        content="website">
-    <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:title"       id="twTitle"       content="Welcome to WD Group">
+    <meta property="og:image" id="ogImage" content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
+    <meta property="og:url" id="ogUrl" content="https://qr.watandesigns.sa/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twTitle" content="Welcome to WD Group">
     <meta name="twitter:description" id="twDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
-    <meta name="twitter:image"       id="twImage"       content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
+    <meta name="twitter:image" id="twImage" content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,6 @@
             overflow-x: hidden;
         }
 
-        /* Ambient drifting gradient backdrop */
         body::before,
         body::after {
             content: '';
@@ -120,7 +119,6 @@
             z-index: 1;
         }
 
-        /* View transitions */
         .view {
             display: none;
             opacity: 0;
@@ -134,7 +132,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* First-load card entry */
         .card {
             opacity: 0;
             transform: translateY(20px) scale(0.97);
@@ -144,7 +141,6 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Decorative corner ornaments */
         .corner {
             position: absolute;
             width: 28px;
@@ -158,7 +154,6 @@
         .corner.bl { bottom: 14px; left: 14px; transform: rotate(-90deg); }
         .corner.br { bottom: 14px; right: 14px; transform: rotate(180deg); }
 
-        /* Heritage badge */
         .eyebrow {
             font-size: 10px;
             font-weight: 600;
@@ -168,7 +163,6 @@
             margin-bottom: 16px;
         }
 
-        /* Decorative ornamental flourish */
         .ornament {
             display: flex;
             align-items: center;
@@ -219,7 +213,6 @@
 
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* Service chips */
         .services {
             display: flex;
             flex-wrap: nowrap;
@@ -432,7 +425,6 @@
             color: #FFFFFF;
         }
 
-        /* Sector selector card (home view) */
         .sector-btn {
             display: flex;
             flex-direction: column;
@@ -462,7 +454,6 @@
             text-transform: uppercase;
         }
 
-        /* Back / page header */
         .page-head {
             display: flex;
             align-items: center;
@@ -503,7 +494,6 @@
             font-weight: 600;
         }
 
-        /* Trust line: stars + testimonial count */
         .trust {
             display: flex;
             flex-direction: column;
@@ -528,7 +518,6 @@
             letter-spacing: 0.03em;
         }
 
-        /* Contact */
         .contact {
             display: flex;
             flex-direction: column;
@@ -573,7 +562,6 @@
             text-transform: uppercase;
         }
 
-        /* Modal */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -665,7 +653,6 @@
         }
         .modal .btn { padding: 15px 18px; font-size: 15px; min-height: 50px; }
 
-        /* Floating WhatsApp action button */
         .wa-fab {
             position: fixed;
             bottom: max(20px, env(safe-area-inset-bottom));
@@ -786,7 +773,6 @@
 <body>
     <main class="card" role="main">
 
-        <!-- Corner ornaments -->
         <div class="corner tl" aria-hidden="true">
             <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
                 <path d="M2 14 L2 2 L14 2"/>
@@ -812,7 +798,6 @@
             </svg>
         </div>
 
-        <!-- ============ HOME VIEW ============ -->
         <section class="view active" id="view-home" aria-label="WD Group home">
             <div class="eyebrow" data-c="home.eyebrow">Est. 1993 &nbsp;·&nbsp; Saudi Arabia</div>
 
@@ -896,7 +881,6 @@
             </div>
         </section>
 
-        <!-- ============ MANUFACTURING VIEW ============ -->
         <section class="view" id="view-manufacturing" aria-label="Furniture and Factories" hidden>
             <div class="page-head">
                 <button class="back-btn" type="button" data-go="home" aria-label="Back to WD Group home">
@@ -919,7 +903,6 @@
             <div class="divider"></div>
 
             <div class="btn-group" id="manufacturing-buttons">
-                <!-- Populated by JS -->
             </div>
 
             <div class="footer" data-c="sectors.manufacturing.page_footer">
@@ -927,7 +910,6 @@
             </div>
         </section>
 
-        <!-- ============ HOSPITALITY VIEW ============ -->
         <section class="view" id="view-hospitality" aria-label="Hospitality" hidden>
             <div class="page-head">
                 <button class="back-btn" type="button" data-go="home" aria-label="Back to WD Group home">
@@ -950,7 +932,6 @@
             <div class="divider"></div>
 
             <div class="btn-group" id="hospitality-buttons">
-                <!-- Populated by JS -->
             </div>
 
             <div class="footer" data-c="sectors.hospitality.page_footer">
@@ -960,7 +941,6 @@
 
     </main>
 
-    <!-- ============ REVIEW POPUP ============ -->
     <div class="modal-overlay" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
         <div class="modal">
             <button class="modal-close" type="button" id="modalClose" aria-label="Close">
@@ -1005,13 +985,10 @@
     </a>
 
     <script>
-        // ============================================================
-        //  WD Group — Live content from Supabase, with safe fallback
-        // ============================================================
         const SUPABASE_URL = 'https://tblfnxaedhmwydjqngnb.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_84F0DGqG8-A01ecxVMQ0jA_hydWAwtw';
 
-        // Fallback content shown if Supabase is unreachable. Keep in sync with the seed.
+        // shown if supabase is down — keep this roughly in sync
         const DEFAULT_CONTENT = {
             site: {
                 page_title: 'Welcome to WD Group',
@@ -1077,14 +1054,11 @@
 
         let CONTENT = DEFAULT_CONTENT;
 
-        // Tiny dotted-path resolver: getPath(obj, 'home.chips.0')
         function getPath(obj, path) {
             return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
         }
 
-        // SEO / social-share meta tags — updated dynamically for in-browser
-        // visitors. Static HTML in git is what crawlers (Google, FB, Twitter,
-        // WhatsApp) read, so changes only fully propagate after a redeploy.
+        // note: crawlers see the static HTML, so SEO edits only land after redeploy
         function applySiteMeta(site) {
             if (!site) return;
             const setText = (id, value) => {
@@ -1114,19 +1088,17 @@
             }
         }
 
-        // SVG icons (used inside JS-built sector buttons)
         const ICON_GLOBE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
-        const ICON_STAR  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
-        const ICON_CHEV  = '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
+        const ICON_STAR = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+        const ICON_CHEV = '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
 
         function escapeHtml(s) {
             return String(s == null ? '' : s)
                 .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
                 .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
-        function escapeAttr(s) { return escapeHtml(s); }
+        const escapeAttr = escapeHtml;
 
-        // Build all buttons (website + items) for a sector
         function buildSector(sectorKey) {
             const sector = getPath(CONTENT, `sectors.${sectorKey}`) || {};
             const items  = sector.items || [];
@@ -1171,18 +1143,16 @@
             container.innerHTML = html.join('');
         }
 
-        // Reorder home sector cards based on content.home.sectors_order
         function applyHomeOrder() {
-            const wrap  = document.getElementById('home-sectors');
+            const wrap = document.getElementById('home-sectors');
             const order = (CONTENT.home && CONTENT.home.sectors_order) || ['manufacturing', 'hospitality'];
             if (!wrap) return;
             order.forEach(key => {
                 const card = wrap.querySelector(`[data-sector-card="${key}"]`);
-                if (card) wrap.appendChild(card); // moves to end in order
+                if (card) wrap.appendChild(card);
             });
         }
 
-        // Apply content to all data-c / data-c-href bindings, then rebuild lists
         function applyContent(content) {
             CONTENT = content || DEFAULT_CONTENT;
 
@@ -1203,7 +1173,6 @@
             buildSector('hospitality');
         }
 
-        // Initial paint with defaults, then async refresh from Supabase
         applyContent(DEFAULT_CONTENT);
 
         fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data`, {
@@ -1219,11 +1188,8 @@
             .then(rows => {
                 if (rows && rows[0] && rows[0].data) applyContent(rows[0].data);
             })
-            .catch(() => { /* keep defaults */ });
+            .catch(() => {});
 
-        // ============================================================
-        //  View navigation
-        // ============================================================
         const views = document.querySelectorAll('.view');
 
         function showView(name, push = true) {
@@ -1285,15 +1251,12 @@
         const initial = location.hash.replace('#', '');
         if (['manufacturing', 'hospitality'].includes(initial)) showView(initial, false);
 
-        // ============================================================
-        //  Review popup
-        // ============================================================
-        const modal       = document.getElementById('reviewModal');
-        const modalClose  = document.getElementById('modalClose');
-        const modalTitle  = document.getElementById('modalTitle');
-        const modalLoc    = document.getElementById('modalLocation');
+        const modal = document.getElementById('reviewModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalLoc = document.getElementById('modalLocation');
         const modalReview = document.getElementById('modalReview');
-        const modalWeb    = document.getElementById('modalWebsite');
+        const modalWeb = document.getElementById('modalWebsite');
 
         let lastFocused = null;
 
