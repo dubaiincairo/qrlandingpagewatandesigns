@@ -1,0 +1,2781 @@
+================================================================================
+                  WD GROUP — ALL WEBSITE SOURCE CODE
+                  Single-file dump of the entire project
+                  Repository: dubaiincairo/qrlandingpagewatandesigns
+================================================================================
+
+This file contains the full source of every text-based file in the project:
+  1. index.html              — public landing page
+  2. secretadminconsole.html — content management console
+  3. vercel.json             — Vercel deploy config
+  4. robots.txt              — search-engine directives
+  5. README.md               — deployment notes
+
+Binary assets (PNG / SVG QR codes in /qr-assets/) are NOT embedded.
+
+================================================================================
+                  FILE 1 of 5 :: index.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1F1A14">
+    <meta name="description" id="metaDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
+    <title id="pageTitle">Welcome to WD Group</title>
+    <link rel="icon" type="image/jpeg" href="https://watandesigns.sa/wp-content/uploads/2024/05/favicon.jpeg">
+
+    <meta property="og:title"       id="ogTitle"       content="Welcome to WD Group">
+    <meta property="og:description" id="ogDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
+    <meta property="og:image"       id="ogImage"       content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
+    <meta property="og:url"         id="ogUrl"         content="https://qr.watandesigns.sa/">
+    <meta property="og:type"        content="website">
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       id="twTitle"       content="Welcome to WD Group">
+    <meta name="twitter:description" id="twDescription" content="Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.">
+    <meta name="twitter:image"       id="twImage"       content="https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-cream:      #FAF7F2;
+            --card-white:    #FFFFFF;
+            --text-primary:  #1F1A14;
+            --text-muted:    #6B6157;
+            --text-faint:    #9A9089;
+            --accent-gold:   #A07B3F;
+            --accent-gold-lt:#C8A063;
+            --accent-gold-dk:#8E6B33;
+            --accent-dark:   #2B2B2B;
+            --accent-blue:   #2C5F7E;
+            --accent-blue-dk:#1F4A66;
+            --border-soft:   #EDE6D8;
+            --chip-bg:       #F7F2E8;
+            --shadow-soft:   0 10px 40px rgba(31, 26, 20, 0.08);
+            --shadow-hover:  0 14px 50px rgba(31, 26, 20, 0.14);
+            --ease-luxury:   cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            min-height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-cream);
+            color: var(--text-primary);
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100svh;
+            min-height: 100dvh;
+            padding:
+                max(24px, env(safe-area-inset-top))
+                max(20px, env(safe-area-inset-right))
+                max(24px, env(safe-area-inset-bottom))
+                max(20px, env(safe-area-inset-left));
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient drifting gradient backdrop */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            width: 600px; height: 600px;
+            top: -200px; left: -200px;
+            background: rgba(160, 123, 63, 0.08);
+            animation: drift1 60s ease-in-out infinite;
+        }
+
+        body::after {
+            width: 500px; height: 500px;
+            bottom: -150px; right: -150px;
+            background: rgba(160, 123, 63, 0.06);
+            animation: drift2 75s ease-in-out infinite;
+        }
+
+        @keyframes drift1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50%      { transform: translate(80px, 60px) scale(1.1); }
+        }
+
+        @keyframes drift2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50%      { transform: translate(-60px, -80px) scale(1.15); }
+        }
+
+        .card {
+            width: 100%;
+            max-width: 460px;
+            background: var(--card-white);
+            border-radius: 20px;
+            padding: 44px 30px 28px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-soft);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* View transitions */
+        .view {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        .view.active {
+            display: block;
+            animation: viewEnter 0.55s var(--ease-luxury) forwards;
+        }
+        @keyframes viewEnter {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* First-load card entry */
+        .card {
+            opacity: 0;
+            transform: translateY(20px) scale(0.97);
+            animation: cardEnter 1s var(--ease-luxury) 0.1s forwards;
+        }
+        @keyframes cardEnter {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Decorative corner ornaments */
+        .corner {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            opacity: 0;
+            animation: fadeIn 0.8s var(--ease-luxury) 1.4s forwards;
+        }
+        .corner svg { width: 100%; height: 100%; display: block; }
+        .corner.tl { top: 14px; left: 14px; }
+        .corner.tr { top: 14px; right: 14px; transform: rotate(90deg); }
+        .corner.bl { bottom: 14px; left: 14px; transform: rotate(-90deg); }
+        .corner.br { bottom: 14px; right: 14px; transform: rotate(180deg); }
+
+        /* Heritage badge */
+        .eyebrow {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        /* Decorative ornamental flourish */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .ornament .line {
+            height: 1px;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold) 50%, transparent);
+        }
+
+        .ornament .diamond {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            transform: rotate(45deg);
+            border-radius: 1px;
+            animation: diamondPulse 4s ease-in-out infinite 2.5s;
+        }
+
+        @keyframes diamondPulse {
+            0%, 100% { transform: rotate(45deg) scale(1); opacity: 1; }
+            50%      { transform: rotate(45deg) scale(1.25); opacity: 0.85; }
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        h1:focus { outline: none; }
+
+        .tagline {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 22px;
+            font-weight: 400;
+            font-style: italic;
+            padding: 0 8px;
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* Service chips */
+        .services {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 24px;
+        }
+
+        .chip {
+            font-size: 9.5px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--text-muted);
+            background: var(--chip-bg);
+            border: 1px solid var(--border-soft);
+            padding: 5px 9px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: all 0.3s var(--ease-luxury);
+        }
+
+        .chip:hover {
+            color: var(--accent-gold-dk);
+            border-color: var(--accent-gold);
+            background: #FFFFFF;
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            width: 56px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 0 auto 26px;
+            border-radius: 2px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 17px 22px;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1.5px solid transparent;
+            min-height: 56px;
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            color: inherit;
+            background: none;
+            transition: transform 0.3s var(--ease-luxury),
+                        box-shadow 0.3s var(--ease-luxury),
+                        background-color 0.3s ease,
+                        border-color 0.3s ease,
+                        color 0.3s ease;
+        }
+
+        .btn svg {
+            flex-shrink: 0;
+            transition: transform 0.3s var(--ease-luxury);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+            transition: left 0.7s var(--ease-luxury);
+            pointer-events: none;
+        }
+
+        .btn:hover::after,
+        .btn:focus-visible::after { left: 100%; }
+
+        .btn:hover svg,
+        .btn:focus-visible svg { transform: scale(1.12); }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 3px;
+        }
+
+        .btn-primary {
+            background: var(--accent-dark);
+            color: #FFFFFF;
+            border-color: var(--accent-dark);
+        }
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
+            background: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .btn-primary:active { transform: translateY(0); }
+
+        .btn-gold {
+            background: var(--accent-gold);
+            color: #FFFFFF;
+            border-color: var(--accent-gold);
+        }
+        .btn-gold:hover,
+        .btn-gold:focus-visible {
+            background: var(--accent-gold-dk);
+            border-color: var(--accent-gold-dk);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 50px rgba(160, 123, 63, 0.28);
+        }
+        .btn-gold:active { transform: translateY(0); }
+
+        .btn-blue {
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            border-color: var(--accent-blue);
+        }
+        .btn-blue:hover,
+        .btn-blue:focus-visible {
+            background: var(--accent-blue-dk);
+            border-color: var(--accent-blue-dk);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 50px rgba(44, 95, 126, 0.28);
+        }
+        .btn-blue:active { transform: translateY(0); }
+
+        .btn-outline {
+            background: var(--card-white);
+            color: var(--text-primary);
+            border-color: var(--border-soft);
+            font-weight: 500;
+        }
+        .btn-outline .btn-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            line-height: 1.2;
+        }
+        .btn-outline .btn-name { font-weight: 600; font-size: 15px; }
+        .btn-outline .btn-loc {
+            font-size: 11px;
+            color: var(--text-faint);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            margin-top: 3px;
+            text-transform: uppercase;
+        }
+        .btn-outline .chevron {
+            margin-left: auto;
+            color: var(--accent-gold);
+            opacity: 0.6;
+            transition: transform 0.3s var(--ease-luxury), opacity 0.3s ease;
+        }
+        .btn-outline:hover,
+        .btn-outline:focus-visible {
+            background: #FFFFFF;
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .btn-outline:hover .chevron,
+        .btn-outline:focus-visible .chevron {
+            transform: translateX(4px);
+            opacity: 1;
+        }
+
+        .btn-outline .leading-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--chip-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold-dk);
+            flex-shrink: 0;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .btn-outline:hover .leading-icon,
+        .btn-outline:focus-visible .leading-icon {
+            background: var(--accent-gold);
+            color: #FFFFFF;
+        }
+        .btn-outline .leading-icon svg { width: 18px; height: 18px; }
+
+        .btn-outline.btn-outline-blue:hover,
+        .btn-outline.btn-outline-blue:focus-visible {
+            border-color: var(--accent-blue);
+        }
+        .btn-outline.btn-outline-blue .chevron { color: var(--accent-blue); }
+        .btn-outline.btn-outline-blue .leading-icon { color: var(--accent-blue-dk); background: #E8F0F5; }
+        .btn-outline.btn-outline-blue:hover .leading-icon,
+        .btn-outline.btn-outline-blue:focus-visible .leading-icon {
+            background: var(--accent-blue);
+            color: #FFFFFF;
+        }
+
+        /* Sector selector card (home view) */
+        .sector-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            text-align: center;
+            padding: 22px 18px;
+            min-height: 0;
+        }
+        .sector-btn .sector-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4px;
+            transition: transform 0.4s var(--ease-luxury);
+        }
+        .sector-btn:hover .sector-icon,
+        .sector-btn:focus-visible .sector-icon { transform: scale(1.1); }
+        .sector-btn .sector-title { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+        .sector-btn .sector-sub {
+            font-size: 11.5px;
+            opacity: 0.85;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Back / page header */
+        .page-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--chip-bg);
+            border: 1px solid var(--border-soft);
+            color: var(--text-muted);
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            flex-shrink: 0;
+            transition: all 0.3s var(--ease-luxury);
+        }
+        .back-btn:hover,
+        .back-btn:focus-visible {
+            background: #FFFFFF;
+            color: var(--accent-gold-dk);
+            border-color: var(--accent-gold);
+            transform: translateX(-2px);
+            outline: none;
+        }
+        .back-btn svg { width: 16px; height: 16px; }
+        .page-head .head-label {
+            flex: 1;
+            text-align: left;
+            font-size: 10.5px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            font-weight: 600;
+        }
+
+        /* Trust line: stars + testimonial count */
+        .trust {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border-soft);
+            margin-bottom: 22px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+            color: var(--accent-gold);
+        }
+
+        .stars svg { width: 14px; height: 14px; }
+
+        .trust-text {
+            font-size: 11.5px;
+            color: var(--text-faint);
+            letter-spacing: 0.03em;
+        }
+
+        /* Contact */
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--border-soft);
+            margin-bottom: 18px;
+        }
+
+        .contact a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .contact a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s var(--ease-luxury), left 0.3s var(--ease-luxury);
+        }
+
+        .contact a:hover { color: var(--accent-gold); }
+        .contact a:hover::before { width: 100%; left: 0; }
+
+        .footer {
+            font-size: 10px;
+            color: var(--text-muted);
+            opacity: 0.65;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(31, 26, 20, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.3s var(--ease-luxury);
+        }
+        .modal-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
+        .modal {
+            background: var(--card-white);
+            border-radius: 20px;
+            padding: 32px 26px 26px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(31, 26, 20, 0.35);
+            border: 1px solid var(--border-soft);
+            transform: translateY(20px) scale(0.96);
+            opacity: 0;
+            transition: transform 0.4s var(--ease-luxury), opacity 0.3s var(--ease-luxury);
+        }
+        .modal-overlay.open .modal {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--chip-bg);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.25s ease;
+        }
+        .modal-close:hover,
+        .modal-close:focus-visible {
+            background: var(--text-primary);
+            color: #FFFFFF;
+            outline: none;
+            transform: rotate(90deg);
+        }
+        .modal-close svg { width: 14px; height: 14px; }
+        .modal .modal-eyebrow {
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .modal h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+        .modal .modal-location {
+            font-size: 12px;
+            color: var(--text-faint);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+        .modal .modal-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .modal .btn { padding: 15px 18px; font-size: 15px; min-height: 50px; }
+
+        /* Floating WhatsApp action button */
+        .wa-fab {
+            position: fixed;
+            bottom: max(20px, env(safe-area-inset-bottom));
+            right: max(20px, env(safe-area-inset-right));
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow:
+                0 6px 20px rgba(37, 211, 102, 0.35),
+                0 2px 6px rgba(0, 0, 0, 0.12);
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            animation:
+                fabEnter 0.7s var(--ease-luxury) 1.8s forwards,
+                fabPulse 2.8s ease-in-out 4s infinite;
+            transition: transform 0.25s var(--ease-luxury), box-shadow 0.25s var(--ease-luxury);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .wa-fab svg {
+            width: 28px;
+            height: 28px;
+            transition: transform 0.25s var(--ease-luxury);
+        }
+
+        .wa-fab:hover,
+        .wa-fab:focus-visible {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow:
+                0 10px 28px rgba(37, 211, 102, 0.45),
+                0 3px 8px rgba(0, 0, 0, 0.15);
+            outline: none;
+            animation-play-state: paused;
+        }
+
+        .wa-fab:hover svg,
+        .wa-fab:focus-visible svg { transform: scale(1.1); }
+
+        .wa-fab:active { transform: translateY(-1px) scale(1); }
+
+        .wa-fab:focus-visible {
+            outline: 3px solid rgba(37, 211, 102, 0.4);
+            outline-offset: 3px;
+        }
+
+        @keyframes fabEnter {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .wa-fab::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid #25D366;
+            opacity: 0;
+            animation: fabRing 2.8s ease-out 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fabRing {
+            0%   { transform: scale(1);   opacity: 0.6; }
+            70%  { transform: scale(1.5); opacity: 0;   }
+            100% { transform: scale(1.5); opacity: 0;   }
+        }
+
+        @keyframes fabPulse {
+            0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35), 0 2px 6px rgba(0, 0, 0, 0.12); }
+            50%      { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55), 0 2px 6px rgba(0, 0, 0, 0.12); }
+        }
+
+        @media (max-width: 420px) {
+            .card { padding: 40px 22px 24px; }
+            .corner { width: 22px; height: 22px; top: 10px; left: 10px; }
+            .corner.tr { top: 10px; right: 10px; left: auto; }
+            .corner.bl { bottom: 10px; left: 10px; top: auto; }
+            .corner.br { bottom: 10px; right: 10px; left: auto; top: auto; }
+            h1 { font-size: 26px; }
+            .btn { font-size: 15px; padding: 16px 18px; }
+            .chip { font-size: 9px; padding: 4px 8px; letter-spacing: 0.03em; }
+            .services { gap: 4px; }
+            .wa-fab { width: 54px; height: 54px; bottom: max(16px, env(safe-area-inset-bottom)); right: max(16px, env(safe-area-inset-right)); }
+            .wa-fab svg { width: 26px; height: 26px; }
+            .modal { padding: 28px 20px 22px; }
+            .modal h2 { font-size: 22px; }
+        }
+
+        @media (max-width: 379px) {
+            .card { padding: 36px 18px 22px; }
+            .services { flex-wrap: wrap; gap: 5px; }
+            .chip { font-size: 9.5px; padding: 5px 9px; }
+            h1 { font-size: 24px; }
+            .eyebrow { letter-spacing: 0.2em; font-size: 9.5px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .card, .corner, .view, .btn, .wa-fab {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .footer { opacity: 0.65 !important; }
+            .wa-fab::before { display: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main">
+
+        <!-- Corner ornaments -->
+        <div class="corner tl" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+        <div class="corner tr" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+        <div class="corner bl" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+        <div class="corner br" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none" stroke="#A07B3F" stroke-width="1" stroke-linecap="round">
+                <path d="M2 14 L2 2 L14 2"/>
+                <circle cx="2" cy="2" r="1.5" fill="#A07B3F" stroke="none"/>
+            </svg>
+        </div>
+
+        <!-- ============ HOME VIEW ============ -->
+        <section class="view active" id="view-home" aria-label="WD Group home">
+            <div class="eyebrow" data-c="home.eyebrow">Est. 1993 &nbsp;·&nbsp; Saudi Arabia</div>
+
+            <div class="ornament" aria-hidden="true">
+                <span class="line"></span>
+                <span class="diamond"></span>
+                <span class="line"></span>
+            </div>
+
+            <h1 data-c="home.title">Welcome to WD Group</h1>
+            <p class="tagline" data-c="home.tagline">A Saudi holding group of craftsmanship &amp; hospitality</p>
+
+            <div class="services">
+                <span class="chip" data-c="home.chips.0">Manufacturing</span>
+                <span class="chip" data-c="home.chips.1">Hospitality</span>
+                <span class="chip" data-c="home.chips.2">Since 1993</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="btn-group" id="home-sectors">
+                <button class="btn btn-gold sector-btn" type="button" data-go="manufacturing" data-sector-card="manufacturing" aria-label="Explore the Furniture and Factories world">
+                    <span class="sector-icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21V9l5-4 5 4v3h8v9"/>
+                            <path d="M3 21h18"/>
+                            <path d="M13 21v-6h4v6"/>
+                            <path d="M7 12h1"/>
+                            <path d="M7 16h1"/>
+                        </svg>
+                    </span>
+                    <span class="sector-title" data-c="sectors.manufacturing.card_title">Furniture &amp; Factories</span>
+                    <span class="sector-sub" data-c="sectors.manufacturing.card_subtitle">Manufacturing World</span>
+                </button>
+
+                <button class="btn btn-blue sector-btn" type="button" data-go="hospitality" data-sector-card="hospitality" aria-label="Explore the Hospitality world">
+                    <span class="sector-icon" aria-hidden="true">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21V8l9-5 9 5v13"/>
+                            <path d="M3 21h18"/>
+                            <path d="M9 21v-6h6v6"/>
+                            <path d="M9 11h.01"/>
+                            <path d="M15 11h.01"/>
+                            <path d="M12 8h.01"/>
+                        </svg>
+                    </span>
+                    <span class="sector-title" data-c="sectors.hospitality.card_title">Hospitality</span>
+                    <span class="sector-sub" data-c="sectors.hospitality.card_subtitle">Hotels &amp; Apartments</span>
+                </button>
+            </div>
+
+            <div class="trust">
+                <div class="stars" aria-label="5 out of 5 stars">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </div>
+                <div class="trust-text" data-c="home.trust">Trusted across Saudi Arabia for three decades</div>
+            </div>
+
+            <div class="contact">
+                <a href="tel:+966505725070" data-c-href="home.phone_link" aria-label="Call WD Group">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span data-c="home.phone_label">+966 50 572 5070</span>
+                </a>
+                <a href="mailto:info@watandesigns.sa" data-c-href="home.email_link" aria-label="Email WD Group">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <span data-c="home.email_label">info@watandesigns.sa</span>
+                </a>
+            </div>
+
+            <div class="footer" data-c="home.footer">
+                WD Group &copy; 2026 &nbsp;·&nbsp; Saudi Arabia
+            </div>
+        </section>
+
+        <!-- ============ MANUFACTURING VIEW ============ -->
+        <section class="view" id="view-manufacturing" aria-label="Furniture and Factories" hidden>
+            <div class="page-head">
+                <button class="back-btn" type="button" data-go="home" aria-label="Back to WD Group home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <span class="head-label" data-c="sectors.manufacturing.page_label">Manufacturing</span>
+            </div>
+
+            <div class="ornament" aria-hidden="true">
+                <span class="line"></span>
+                <span class="diamond"></span>
+                <span class="line"></span>
+            </div>
+
+            <h1 data-c="sectors.manufacturing.page_title">Furniture &amp; Factories</h1>
+            <p class="tagline" data-c="sectors.manufacturing.page_tagline">Craftsmanship born in Najran, delivered across the Kingdom</p>
+
+            <div class="divider"></div>
+
+            <div class="btn-group" id="manufacturing-buttons">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="footer" data-c="sectors.manufacturing.page_footer">
+                WD Group &middot; Manufacturing Sector
+            </div>
+        </section>
+
+        <!-- ============ HOSPITALITY VIEW ============ -->
+        <section class="view" id="view-hospitality" aria-label="Hospitality" hidden>
+            <div class="page-head">
+                <button class="back-btn" type="button" data-go="home" aria-label="Back to WD Group home">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <span class="head-label" data-c="sectors.hospitality.page_label">Hospitality</span>
+            </div>
+
+            <div class="ornament" aria-hidden="true">
+                <span class="line"></span>
+                <span class="diamond"></span>
+                <span class="line"></span>
+            </div>
+
+            <h1 data-c="sectors.hospitality.page_title">Hospitality</h1>
+            <p class="tagline" data-c="sectors.hospitality.page_tagline">A collection of hotels and serviced apartments across Saudi Arabia</p>
+
+            <div class="divider"></div>
+
+            <div class="btn-group" id="hospitality-buttons">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="footer" data-c="sectors.hospitality.page_footer">
+                WD Group &middot; Hospitality Sector
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ REVIEW POPUP ============ -->
+    <div class="modal-overlay" id="reviewModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal">
+            <button class="modal-close" type="button" id="modalClose" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-eyebrow" id="modalEyebrow" data-c="modal.eyebrow">Share your experience</div>
+            <h2 id="modalTitle">Property Name</h2>
+            <div class="modal-location" id="modalLocation">Location</div>
+
+            <div class="modal-actions">
+                <a class="btn btn-gold" id="modalReview" href="#" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    </svg>
+                    <span id="modalReviewLabel" data-c="modal.review_label">Leave a Google Review</span>
+                </a>
+                <a class="btn btn-primary" id="modalWebsite" href="#" target="_blank" rel="noopener">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="2" y1="12" x2="22" y2="12"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span id="modalWebsiteLabel" data-c="modal.website_label">Visit Website</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <a class="wa-fab"
+       id="waFab"
+       href="https://wa.me/966505725070?text=Hello%20WD%20Group%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services."
+       data-c-href="home.whatsapp_url"
+       target="_blank"
+       rel="noopener"
+       aria-label="Chat with WD Group on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
+    <script>
+        // ============================================================
+        //  WD Group — Live content from Supabase, with safe fallback
+        // ============================================================
+        const SUPABASE_URL = 'https://tblfnxaedhmwydjqngnb.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_84F0DGqG8-A01ecxVMQ0jA_hydWAwtw';
+
+        // Fallback content shown if Supabase is unreachable. Keep in sync with the seed.
+        const DEFAULT_CONTENT = {
+            site: {
+                page_title: 'Welcome to WD Group',
+                meta_description: 'Welcome to WD Group — A Saudi holding group of manufacturing excellence and hospitality. Since 1993.',
+                og_image_url: 'https://tblfnxaedhmwydjqngnb.supabase.co/storage/v1/object/public/wdgroup-social/social-1779642706687-amjh6g.jpeg',
+                og_url: 'https://qr.watandesigns.sa/'
+            },
+            home: {
+                eyebrow: 'Est. 1993  ·  Saudi Arabia',
+                title: 'Welcome to WD Group',
+                tagline: 'A Saudi holding group of craftsmanship & hospitality',
+                chips: ['Manufacturing', 'Hospitality', 'Since 1993'],
+                trust: 'Trusted across Saudi Arabia for three decades',
+                phone_label: '+966 50 572 5070',
+                phone_link: 'tel:+966505725070',
+                email_label: 'info@watandesigns.sa',
+                email_link: 'mailto:info@watandesigns.sa',
+                footer: 'WD Group © 2026  ·  Saudi Arabia',
+                whatsapp_url: 'https://wa.me/966505725070?text=Hello%20WD%20Group%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.',
+                sectors_order: ['manufacturing', 'hospitality']
+            },
+            sectors: {
+                manufacturing: {
+                    card_title: 'Furniture & Factories',
+                    card_subtitle: 'Manufacturing World',
+                    page_label: 'Manufacturing',
+                    page_title: 'Furniture & Factories',
+                    page_tagline: 'Craftsmanship born in Najran, delivered across the Kingdom',
+                    page_footer: 'WD Group · Manufacturing Sector',
+                    website: 'https://watandesigns.sa/',
+                    website_label: 'Visit Official Website',
+                    items: [
+                        { id: 'alwatani', name: 'Alwatani Factory', location: 'Najran', website: '', review: 'https://www.google.com/search?q=%D9%86%D8%B4%D8%A7%D8%B7%D9%8A+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A&mat=CUlBmizCpT-BEkwBTVDHnrw7EPZpgHfwveumYPBbmBc5TrmeY1b4kPcwoTzi7yhdTubN6AL0JqJXx8e9C67j8B4S1xHrfSR0qh4NwqehmycJiF45vDu0&hl=ar&authuser=2&ved=2ahUKEwj2nebc-9GUAxXEZaQEHR2nAPgQ-MgIegQIDhA5' },
+                        { id: 'watandesigns_factory', name: 'Watan Designs Factory', location: 'Najran', website: '', review: 'https://g.page/r/Cduu54JdvyfcEBM/review' },
+                        { id: 'watani_kitchens', name: 'Watani Kitchens', location: 'Najran', website: '', review: 'https://g.page/r/CZzKCB3a6uoFEBM/review' }
+                    ]
+                },
+                hospitality: {
+                    card_title: 'Hospitality',
+                    card_subtitle: 'Hotels & Apartments',
+                    page_label: 'Hospitality',
+                    page_title: 'Hospitality',
+                    page_tagline: 'A collection of hotels and serviced apartments across Saudi Arabia',
+                    page_footer: 'WD Group · Hospitality Sector',
+                    website: 'https://new.swissbluehotels.com/',
+                    website_label: 'Visit Official Website',
+                    items: [
+                        { id: 'swissblue_jeddah',    name: 'SwissBlue Hotel',                    location: 'Jeddah',   website: '', review: 'https://g.page/r/CTvArVxtV-_AEBM/review' },
+                        { id: 'swissblue_alzahraa', name: 'SwissBlue Serviced Apartments',      location: 'Alzahraa', website: '', review: 'https://www.google.com/search?q=SwissBlue+Serviced+Apartments+Alzahraa+District&stick=H4sIAAAAAAAA_-NgU1I1qDA0TTZOSbSwMDQySk0xSjW3MqgwSkxJNk9MSTEzTjExNDcyXMSqH1yeWVzslFOaqhCcWlSWmZyaouBYkFhUkpuaV1Ks4JhTlZhRlJio4JJZXFKUmVwCAPLaecZbAAAA&hl=en-GB&mat=CUAhW94HvCJwElUBTVDHnmvVcjtFek2G-vvGsXff1Gpu8SZCAaUBTukcGVvJtckyjJY0JMkV8ZYXxF1xJU7VQW-gM7KIl4EJ3lz8MEs1aFgf2j0Jp8LFM3jpsZJqyFyZ&authuser=0#lrd=0x15c3da88122ed2e7:0x2adc7add63d41721,3,,,,' },
+                        { id: 'swissblue_alsamer',  name: 'SwissBlue Serviced Apartments',      location: 'Alsamer',  website: '', review: 'https://www.google.com/search?q=SwissBlue+Serviced+Apartments+Alsamer+District&stick=H4sIAAAAAAAA_-NgU1I1qDA0TTZOMTZKM7I0tzRMSjS3MqiwNDc2STQzMUs0MjZOTUk0WsSqF1yeWVzslFOaqhCcWlSWmZyaouBYkFhUkpuaV1Ks4JhTnJibWqTgkllcUpSZXAIACq1TQ1oAAAA&hl=en-GB&mat=CUJxz3nPIZThElUBTVDHnhqEIi-F_08Lj7Z31j5KDS0fosIWxUikjNLqjW2LcLc2vEJOwfCWWOrCYXtieha4sGID1M3Dpuy82mEqJT3U7-XCl_ApF4CuRtPQH23JesAB&authuser=0#lrd=0x15c3d32f29791ba7:0x9734a646a233eda2,3,,,,' },
+                        { id: 'swissblue_jazan',    name: 'SwissBlue Hotel Apartments',         location: 'Jazan',    website: '', review: 'https://g.page/r/CfbAkfOseUxPEBM/review' },
+                        { id: 'vinas_riyadh',       name: 'Vinas Serviced Apartments',          location: 'Riyadh',   website: '', review: 'https://g.page/r/CRu-wBrpnqFREBM/review' },
+                        { id: 'tulip_alrawdah',     name: 'Tulip Alrawdah Serviced Apartments', location: 'Riyadh',   website: '', review: 'https://g.page/r/CXkYG9RprBbTEAI/review' }
+                    ]
+                }
+            },
+            modal: {
+                eyebrow: 'Share your experience',
+                review_label: 'Leave a Google Review',
+                website_label: 'Visit Website'
+            }
+        };
+
+        let CONTENT = DEFAULT_CONTENT;
+
+        // Tiny dotted-path resolver: getPath(obj, 'home.chips.0')
+        function getPath(obj, path) {
+            return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+        }
+
+        // SEO / social-share meta tags — updated dynamically for in-browser
+        // visitors. Static HTML in git is what crawlers (Google, FB, Twitter,
+        // WhatsApp) read, so changes only fully propagate after a redeploy.
+        function applySiteMeta(site) {
+            if (!site) return;
+            const setText = (id, value) => {
+                const el = document.getElementById(id);
+                if (el && value) el.textContent = value;
+            };
+            const setAttr = (id, value) => {
+                const el = document.getElementById(id);
+                if (el && value) el.setAttribute('content', value);
+            };
+            if (site.page_title) {
+                setText('pageTitle', site.page_title);
+                setAttr('ogTitle',   site.page_title);
+                setAttr('twTitle',   site.page_title);
+            }
+            if (site.meta_description) {
+                setAttr('metaDescription', site.meta_description);
+                setAttr('ogDescription',   site.meta_description);
+                setAttr('twDescription',   site.meta_description);
+            }
+            if (site.og_image_url) {
+                setAttr('ogImage', site.og_image_url);
+                setAttr('twImage', site.og_image_url);
+            }
+            if (site.og_url) {
+                setAttr('ogUrl', site.og_url);
+            }
+        }
+
+        // SVG icons (used inside JS-built sector buttons)
+        const ICON_GLOBE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
+        const ICON_STAR  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
+        const ICON_CHEV  = '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
+
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function escapeAttr(s) { return escapeHtml(s); }
+
+        // Build all buttons (website + items) for a sector
+        function buildSector(sectorKey) {
+            const sector = getPath(CONTENT, `sectors.${sectorKey}`) || {};
+            const items  = sector.items || [];
+            const container = document.getElementById(`${sectorKey}-buttons`);
+            if (!container) return;
+
+            const websiteBtnClass = sectorKey === 'hospitality' ? 'btn-blue' : 'btn-primary';
+            const outlineClass    = sectorKey === 'hospitality' ? 'btn-outline btn-outline-blue' : 'btn-outline';
+            const websiteLabel    = escapeHtml(sector.website_label || 'Visit Official Website');
+
+            const html = [];
+
+            html.push(`
+                <a class="btn ${websiteBtnClass}"
+                   href="${escapeAttr(sector.website || '#')}"
+                   target="_blank"
+                   rel="noopener"
+                   ${!sector.website ? 'data-pending="website"' : ''}
+                   aria-label="Visit ${escapeAttr(sectorKey)} sector official website">
+                    ${ICON_GLOBE}
+                    ${websiteLabel}
+                </a>
+            `);
+
+            items.forEach((item, idx) => {
+                html.push(`
+                    <button class="btn ${outlineClass}"
+                            type="button"
+                            data-sector="${escapeAttr(sectorKey)}"
+                            data-entity="${idx}"
+                            aria-label="Review options for ${escapeAttr(item.name)} ${escapeAttr(item.location || '')}">
+                        <span class="leading-icon" aria-hidden="true">${ICON_STAR}</span>
+                        <span class="btn-meta">
+                            <span class="btn-name">${escapeHtml(item.name)}</span>
+                            <span class="btn-loc">${escapeHtml(item.location || '')}</span>
+                        </span>
+                        ${ICON_CHEV}
+                    </button>
+                `);
+            });
+
+            container.innerHTML = html.join('');
+        }
+
+        // Reorder home sector cards based on content.home.sectors_order
+        function applyHomeOrder() {
+            const wrap  = document.getElementById('home-sectors');
+            const order = (CONTENT.home && CONTENT.home.sectors_order) || ['manufacturing', 'hospitality'];
+            if (!wrap) return;
+            order.forEach(key => {
+                const card = wrap.querySelector(`[data-sector-card="${key}"]`);
+                if (card) wrap.appendChild(card); // moves to end in order
+            });
+        }
+
+        // Apply content to all data-c / data-c-href bindings, then rebuild lists
+        function applyContent(content) {
+            CONTENT = content || DEFAULT_CONTENT;
+
+            document.querySelectorAll('[data-c]').forEach(el => {
+                const val = getPath(CONTENT, el.getAttribute('data-c'));
+                if (val !== undefined && val !== null && String(val).length) {
+                    el.textContent = val;
+                }
+            });
+            document.querySelectorAll('[data-c-href]').forEach(el => {
+                const val = getPath(CONTENT, el.getAttribute('data-c-href'));
+                if (val) el.setAttribute('href', val);
+            });
+
+            applyHomeOrder();
+            applySiteMeta(CONTENT.site);
+            buildSector('manufacturing');
+            buildSector('hospitality');
+        }
+
+        // Initial paint with defaults, then async refresh from Supabase
+        applyContent(DEFAULT_CONTENT);
+
+        fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data`, {
+            cache: 'no-store',
+            headers: {
+                apikey: SUPABASE_KEY,
+                Authorization: `Bearer ${SUPABASE_KEY}`,
+                Accept: 'application/json',
+                'Cache-Control': 'no-cache'
+            }
+        })
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(rows => {
+                if (rows && rows[0] && rows[0].data) applyContent(rows[0].data);
+            })
+            .catch(() => { /* keep defaults */ });
+
+        // ============================================================
+        //  View navigation
+        // ============================================================
+        const views = document.querySelectorAll('.view');
+
+        function showView(name, push = true) {
+            const target = document.getElementById(`view-${name}`);
+            if (!target) return;
+
+            views.forEach(v => {
+                const isTarget = v === target;
+                v.classList.toggle('active', isTarget);
+                if (!isTarget) v.setAttribute('hidden', '');
+                else           v.removeAttribute('hidden');
+            });
+
+            target.style.animation = 'none';
+            void target.offsetWidth;
+            target.style.animation = '';
+
+            if (push) {
+                const url = name === 'home' ? '#' : `#${name}`;
+                history.pushState({ view: name }, '', url);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const h = target.querySelector('h1');
+            if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+        }
+
+        document.addEventListener('click', (e) => {
+            const navBtn = e.target.closest('[data-go]');
+            if (navBtn) { showView(navBtn.getAttribute('data-go')); return; }
+
+            const entityBtn = e.target.closest('[data-entity]');
+            if (entityBtn) {
+                const sectorKey = entityBtn.getAttribute('data-sector');
+                const idx       = parseInt(entityBtn.getAttribute('data-entity'), 10);
+                openReviewModal(sectorKey, idx);
+                return;
+            }
+
+            const pendingLink = e.target.closest('[data-pending]');
+            if (pendingLink) {
+                e.preventDefault();
+                pendingLink.setAttribute('aria-disabled', 'true');
+                const original = pendingLink.innerHTML;
+                pendingLink.innerHTML = original.replace(/(Visit Official Website|Leave a Google Review|Visit Website)/, 'Coming soon');
+                setTimeout(() => { pendingLink.innerHTML = original; pendingLink.removeAttribute('aria-disabled'); }, 1600);
+            }
+        });
+
+        window.addEventListener('popstate', (e) => {
+            const name = (e.state && e.state.view) || (location.hash.replace('#', '') || 'home');
+            if (['home', 'manufacturing', 'hospitality'].includes(name)) {
+                showView(name, false);
+                closeModal(false);
+            }
+        });
+
+        const initial = location.hash.replace('#', '');
+        if (['manufacturing', 'hospitality'].includes(initial)) showView(initial, false);
+
+        // ============================================================
+        //  Review popup
+        // ============================================================
+        const modal       = document.getElementById('reviewModal');
+        const modalClose  = document.getElementById('modalClose');
+        const modalTitle  = document.getElementById('modalTitle');
+        const modalLoc    = document.getElementById('modalLocation');
+        const modalReview = document.getElementById('modalReview');
+        const modalWeb    = document.getElementById('modalWebsite');
+
+        let lastFocused = null;
+
+        function openReviewModal(sectorKey, idx) {
+            const item = getPath(CONTENT, `sectors.${sectorKey}.items.${idx}`);
+            if (!item) return;
+
+            lastFocused = document.activeElement;
+
+            modalTitle.textContent = item.name || '';
+            modalLoc.textContent   = item.location || '';
+
+            if (item.review) {
+                modalReview.href = item.review;
+                modalReview.removeAttribute('data-pending');
+                modalReview.removeAttribute('aria-disabled');
+            } else {
+                modalReview.href = '#';
+                modalReview.setAttribute('data-pending', 'review');
+            }
+
+            if (item.website) {
+                modalWeb.href = item.website;
+                modalWeb.style.display = '';
+                modalWeb.removeAttribute('data-pending');
+            } else {
+                modalWeb.href = '#';
+                modalWeb.style.display = 'none';
+            }
+
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => modalReview.focus(), 50);
+        }
+
+        function closeModal(restoreFocus = true) {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            if (restoreFocus && lastFocused && lastFocused.focus) lastFocused.focus();
+        }
+
+        modalClose.addEventListener('click', () => closeModal());
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+        });
+    </script>
+</body>
+</html>
+
+
+================================================================================
+                  FILE 2 of 5 :: secretadminconsole.html
+================================================================================
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#1F1A14">
+    <title>WD Group · Console</title>
+    <link rel="icon" type="image/jpeg" href="https://watandesigns.sa/wp-content/uploads/2024/05/favicon.jpeg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:           #F5F2EC;
+            --surface:      #FFFFFF;
+            --surface-2:    #FAF7F2;
+            --text:         #1F1A14;
+            --text-muted:   #6B6157;
+            --text-faint:   #9A9089;
+            --gold:         #A07B3F;
+            --gold-dk:      #8E6B33;
+            --gold-lt:      #E8DBC2;
+            --danger:       #B33A3A;
+            --success:      #2E7D55;
+            --border:       #E3DCCC;
+            --shadow:       0 8px 28px rgba(31, 26, 20, 0.08);
+            --ease:         cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { min-height: 100%; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 24px 16px 80px;
+        }
+
+        /* Login screen */
+        .auth-shell {
+            min-height: calc(100vh - 48px);
+            min-height: calc(100dvh - 48px);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .auth-card {
+            width: 100%; max-width: 380px;
+            background: var(--surface);
+            border-radius: 18px;
+            padding: 36px 28px 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+        .auth-eyebrow {
+            font-size: 10px; letter-spacing: 0.28em; color: var(--gold);
+            text-transform: uppercase; font-weight: 600;
+            text-align: center; margin-bottom: 8px;
+        }
+        .auth-card h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 26px; font-weight: 600; text-align: center;
+            margin-bottom: 8px; line-height: 1.2;
+        }
+        .auth-sub {
+            font-size: 13px; color: var(--text-muted);
+            text-align: center; margin-bottom: 22px;
+        }
+        .field { margin-bottom: 14px; }
+        .field label {
+            display: block; font-size: 11px;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--text-muted); font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .field input, .field textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: var(--surface-2);
+            font-family: inherit; font-size: 14px;
+            color: var(--text);
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .field input:focus, .field textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: var(--surface);
+        }
+        .field textarea { resize: vertical; min-height: 64px; line-height: 1.4; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 13px 18px;
+            border-radius: 10px;
+            font-family: inherit; font-size: 15px; font-weight: 600;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: all 0.2s var(--ease);
+        }
+        .btn-primary {
+            background: var(--text);
+            color: #FFFFFF;
+            border-color: var(--text);
+        }
+        .btn-primary:hover, .btn-primary:focus-visible {
+            background: #000; transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+            outline: none;
+        }
+        .btn-primary:disabled {
+            background: var(--text-muted); border-color: var(--text-muted);
+            cursor: not-allowed; transform: none; box-shadow: none;
+        }
+        .btn-gold {
+            background: var(--gold); color: #FFFFFF; border-color: var(--gold);
+        }
+        .btn-gold:hover, .btn-gold:focus-visible {
+            background: var(--gold-dk); border-color: var(--gold-dk);
+            transform: translateY(-1px); outline: none;
+        }
+        .btn-ghost {
+            background: var(--surface-2); color: var(--text); border-color: var(--border);
+        }
+        .btn-ghost:hover, .btn-ghost:focus-visible {
+            border-color: var(--gold); color: var(--gold-dk); outline: none;
+        }
+        .btn-danger-outline {
+            background: var(--surface); color: var(--danger); border-color: var(--danger);
+        }
+        .btn-danger-outline:hover, .btn-danger-outline:focus-visible {
+            background: var(--danger); color: #FFFFFF; outline: none;
+        }
+        .btn-small { padding: 8px 14px; font-size: 13px; width: auto; }
+        .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .msg {
+            margin-top: 14px; padding: 10px 14px;
+            border-radius: 10px; font-size: 13px;
+            text-align: center; opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Inline notice (e.g. "redeploy required") inside a group */
+        .notice {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 12.5px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .notice svg {
+            width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;
+        }
+        .notice strong { display: block; font-weight: 600; margin-bottom: 2px; }
+        .notice-warn {
+            background: #FAF3E1;
+            color: var(--gold-dk);
+            border: 1px solid #ECD9A6;
+        }
+
+        .field-hint {
+            font-weight: 400;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--text-faint);
+            font-size: 11.5px;
+        }
+
+        /* Image upload */
+        .upload-row {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .upload-btn { width: auto; cursor: pointer; }
+        .upload-status {
+            font-size: 12px;
+            color: var(--text-faint);
+            letter-spacing: 0.02em;
+        }
+        .upload-status.success { color: var(--success); }
+        .upload-status.error   { color: var(--danger); }
+        .image-preview {
+            display: block;
+            max-width: 100%;
+            max-height: 160px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            margin-bottom: 8px;
+            object-fit: contain;
+        }
+        .image-preview[src=""], .image-preview:not([src]) { display: none; }
+        .image-preview.broken { display: none; }
+        .msg.show { opacity: 1; }
+        .msg.error   { background: #FBEAEA; color: var(--danger);  border: 1px solid #F1C8C8; }
+        .msg.success { background: #E6F4EC; color: var(--success); border: 1px solid #BFE2CE; }
+        .msg.info    { background: #FAF3E1; color: var(--gold-dk); border: 1px solid #ECD9A6; }
+
+        /* App layout */
+        .app {
+            max-width: 760px; margin: 0 auto;
+        }
+        .topbar {
+            display: flex; align-items: center; gap: 12px;
+            background: var(--surface); border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            box-shadow: var(--shadow);
+            position: sticky; top: 12px; z-index: 50;
+        }
+        .topbar .brand {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 19px; font-weight: 600; letter-spacing: -0.01em;
+            flex: 1;
+        }
+        .topbar .brand small {
+            display: block; font-size: 9px; letter-spacing: 0.28em;
+            color: var(--gold); text-transform: uppercase; font-weight: 600;
+            font-family: 'Inter', sans-serif; margin-bottom: 2px;
+        }
+        .topbar .save-state {
+            font-size: 11.5px; color: var(--text-faint); letter-spacing: 0.04em;
+            margin-right: 4px;
+        }
+        .topbar .save-state.dirty   { color: var(--gold-dk); }
+        .topbar .save-state.saving  { color: var(--gold); }
+        .topbar .save-state.saved   { color: var(--success); }
+        .topbar .save-state.error   { color: var(--danger); }
+
+        .tabs {
+            display: flex; gap: 2px;
+            background: var(--surface); border-radius: 12px;
+            padding: 4px;
+            border: 1px solid var(--border);
+            margin-bottom: 18px;
+        }
+        .tab {
+            flex: 1 1 0;
+            min-width: 0;
+            padding: 10px 6px;
+            background: transparent; border: none;
+            border-radius: 8px;
+            font-family: inherit; font-size: 13px; font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tab:hover { color: var(--text); }
+        .tab.active {
+            background: var(--text); color: #FFFFFF;
+        }
+        @media (max-width: 520px) {
+            .tab { font-size: 11.5px; padding: 9px 4px; letter-spacing: -0.01em; }
+        }
+
+        /* Reserve room for the sticky save bar so it never covers the
+           last form group in a panel */
+        .panel { padding-bottom: 140px; }
+
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        .group {
+            background: var(--surface); border-radius: 14px;
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 14px;
+            box-shadow: var(--shadow);
+        }
+        .group-title {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 20px; font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .group-sub {
+            font-size: 12px; color: var(--text-faint);
+            text-transform: uppercase; letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        /* Sortable list */
+        .sortable {
+            display: flex; flex-direction: column; gap: 10px;
+            margin-bottom: 8px;
+        }
+        .sort-item {
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 14px 14px 12px;
+            position: relative;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+        }
+        .sort-item.sort-ghost {
+            opacity: 0.35;
+            background: var(--gold-lt);
+            border-color: var(--gold);
+        }
+        .sort-item.sort-chosen {
+            border-color: var(--gold);
+            box-shadow: 0 12px 28px rgba(160, 123, 63, 0.18);
+        }
+        .sort-item-head {
+            display: flex; align-items: center; gap: 10px;
+            margin-bottom: 10px;
+        }
+        .drag-handle {
+            cursor: grab;
+            color: var(--text-faint);
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px; border-radius: 8px;
+            background: transparent;
+            border: none;
+            touch-action: none;
+        }
+        .drag-handle:hover { color: var(--gold-dk); background: var(--surface); }
+        .drag-handle:active { cursor: grabbing; }
+        .drag-handle svg { width: 16px; height: 16px; pointer-events: none; }
+        .sort-item-name {
+            flex: 1;
+            font-weight: 600;
+            font-size: 14px;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .sort-item-fields {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        @media (min-width: 560px) {
+            .sort-item-fields { grid-template-columns: 1fr 1fr; }
+            .sort-item-fields .full { grid-column: 1 / -1; }
+        }
+
+        .home-cards-list {
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .home-card-row {
+            display: flex; align-items: center; gap: 10px;
+            background: var(--surface-2);
+            border: 1.5px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 600;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .home-card-row .sort-item-name { font-weight: 600; }
+        .home-card-row .pill {
+            font-size: 10px; letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 8px; border-radius: 100px;
+            background: var(--gold-lt); color: var(--gold-dk);
+            font-weight: 600;
+        }
+        .home-card-row .pill.blue { background: #E2EAEF; color: #2C5F7E; }
+
+        .save-bar {
+            position: sticky; bottom: 12px;
+            margin-top: 18px;
+            display: flex; gap: 8px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 14px;
+            box-shadow: var(--shadow);
+            z-index: 40;
+        }
+        .save-bar .btn { flex: 1; }
+
+        .danger-zone .btn { width: auto; }
+
+        @media (max-width: 480px) {
+            .topbar { padding: 12px 14px; border-radius: 12px; }
+            .topbar .brand { font-size: 17px; }
+            .group { padding: 16px; }
+            .group-title { font-size: 18px; }
+            .sort-item { padding: 12px 12px 12px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ AUTH VIEW ============ -->
+    <div class="auth-shell" id="authShell">
+        <div class="auth-card">
+            <div class="auth-eyebrow" id="authEyebrow">Sign in</div>
+            <h1 id="authTitle">WD Group Console</h1>
+            <p class="auth-sub" id="authSub">Enter the password to continue.</p>
+
+            <form id="authForm" autocomplete="off">
+                <div class="field">
+                    <label for="authEmail">Email</label>
+                    <input id="authEmail" type="email" autocomplete="username" required inputmode="email" autocapitalize="off" spellcheck="false" />
+                </div>
+                <div class="field" id="authPasswordField">
+                    <label for="authPassword">Password</label>
+                    <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" />
+                </div>
+                <div class="field" id="authConfirmField" style="display:none;">
+                    <label for="authConfirm">Confirm password</label>
+                    <input id="authConfirm" type="password" autocomplete="new-password" minlength="6" />
+                </div>
+                <button class="btn btn-primary" id="authSubmit" type="submit">Sign in</button>
+            </form>
+            <div class="msg" id="authMsg" role="alert" aria-live="polite"></div>
+        </div>
+    </div>
+
+    <!-- ============ APP VIEW ============ -->
+    <div class="app" id="app" style="display:none;">
+        <div class="topbar">
+            <div class="brand">
+                <small>WD Group</small>
+                Content console
+            </div>
+            <span class="save-state" id="saveState">Saved</span>
+            <button class="btn btn-ghost btn-small" id="logoutBtn" type="button">Log out</button>
+        </div>
+
+        <div class="tabs" role="tablist">
+            <button class="tab active" data-tab="home" type="button">Home</button>
+            <button class="tab" data-tab="manufacturing" type="button">Manufacturing</button>
+            <button class="tab" data-tab="hospitality" type="button">Hospitality</button>
+            <button class="tab" data-tab="modal" type="button">Popup</button>
+            <button class="tab" data-tab="settings" type="button">Settings</button>
+        </div>
+
+        <!-- HOME PANEL -->
+        <div class="panel active" id="panel-home">
+            <div class="group">
+                <div class="group-title">Hero text</div>
+                <div class="group-sub">Top of the home view</div>
+
+                <div class="field">
+                    <label for="f-home-eyebrow">Eyebrow (small label above the title)</label>
+                    <input id="f-home-eyebrow" data-bind="home.eyebrow" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-title">Main title</label>
+                    <input id="f-home-title" data-bind="home.title" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-tagline">Tagline</label>
+                    <textarea id="f-home-tagline" data-bind="home.tagline" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Chips</div>
+                <div class="group-sub">Three small badges under the tagline</div>
+
+                <div class="field"><label>Chip 1</label><input data-bind="home.chips.0" type="text" /></div>
+                <div class="field"><label>Chip 2</label><input data-bind="home.chips.1" type="text" /></div>
+                <div class="field"><label>Chip 3</label><input data-bind="home.chips.2" type="text" /></div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Sector cards order</div>
+                <div class="group-sub">Drag to change which sector appears first on the home view</div>
+
+                <div class="home-cards-list" id="homeCardsList">
+                    <!-- populated by JS -->
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Trust line &amp; contact</div>
+                <div class="group-sub">Stars caption, phone, email</div>
+
+                <div class="field">
+                    <label for="f-home-trust">Trust line (under the stars)</label>
+                    <input id="f-home-trust" data-bind="home.trust" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-phone-label">Phone number (visible)</label>
+                    <input id="f-home-phone-label" data-bind="home.phone_label" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-phone-link">Phone link (tel:... — used by the link)</label>
+                    <input id="f-home-phone-link" data-bind="home.phone_link" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-email-label">Email (visible)</label>
+                    <input id="f-home-email-label" data-bind="home.email_label" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-email-link">Email link (mailto:...)</label>
+                    <input id="f-home-email-link" data-bind="home.email_link" type="text" />
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Footer &amp; WhatsApp</div>
+                <div class="group-sub">Bottom of the home view</div>
+
+                <div class="field">
+                    <label for="f-home-footer">Footer line</label>
+                    <input id="f-home-footer" data-bind="home.footer" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-home-wa">Floating WhatsApp button — full link</label>
+                    <input id="f-home-wa" data-bind="home.whatsapp_url" type="text" />
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">SEO &amp; Social sharing</div>
+                <div class="group-sub">How the site appears in Google search results and link previews (WhatsApp, X, LinkedIn, Facebook)</div>
+
+                <div class="notice notice-warn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    <div>
+                        <strong>Heads up — these fields need a redeploy to fully activate.</strong>
+                        Edits save instantly and update what your browser shows, but Google, WhatsApp, X and other crawlers read the static HTML. Ask Claude to redeploy once you're happy with the values below.
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="f-site-title">Website main title <span class="field-hint">— browser tab, Google search headline, share preview title</span></label>
+                    <input id="f-site-title" data-bind="site.page_title" type="text" />
+                </div>
+                <div class="field">
+                    <label for="f-site-meta">Meta description <span class="field-hint">— Google snippet and share preview text (≤ 160 characters recommended)</span></label>
+                    <textarea id="f-site-meta" data-bind="site.meta_description" rows="3"></textarea>
+                </div>
+                <div class="field">
+                    <label for="f-site-image">Social share image <span class="field-hint">— shown when a link to the site is pasted into chat or social (1200×630 recommended, up to 5&nbsp;MB)</span></label>
+                    <div class="upload-row">
+                        <label class="btn btn-ghost btn-small upload-btn" for="f-site-image-file">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            <span id="uploadBtnLabel">Upload image</span>
+                        </label>
+                        <input id="f-site-image-file" type="file" accept="image/jpeg,image/jpg,image/png,image/webp,image/gif" style="display:none;" />
+                        <span class="upload-status" id="uploadStatus"></span>
+                    </div>
+                    <img class="image-preview" id="f-site-image-preview" alt="" />
+                    <input id="f-site-image" data-bind="site.og_image_url" type="text" placeholder="https://..." spellcheck="false" />
+                </div>
+                <div class="field">
+                    <label for="f-site-url">Canonical site URL <span class="field-hint">— the public URL Google should treat as primary</span></label>
+                    <input id="f-site-url" data-bind="site.og_url" type="text" placeholder="https://qr.watandesigns.sa/" />
+                </div>
+            </div>
+        </div>
+
+        <!-- MANUFACTURING PANEL -->
+        <div class="panel" id="panel-manufacturing">
+            <div class="group">
+                <div class="group-title">Sector card (home page)</div>
+                <div class="group-sub">How the Manufacturing card looks on the home view</div>
+
+                <div class="field">
+                    <label>Card title</label>
+                    <input data-bind="sectors.manufacturing.card_title" type="text" />
+                </div>
+                <div class="field">
+                    <label>Card subtitle</label>
+                    <input data-bind="sectors.manufacturing.card_subtitle" type="text" />
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Manufacturing page</div>
+                <div class="group-sub">Header text on the Manufacturing page</div>
+
+                <div class="field">
+                    <label>Top label</label>
+                    <input data-bind="sectors.manufacturing.page_label" type="text" />
+                </div>
+                <div class="field">
+                    <label>Page title</label>
+                    <input data-bind="sectors.manufacturing.page_title" type="text" />
+                </div>
+                <div class="field">
+                    <label>Tagline</label>
+                    <textarea data-bind="sectors.manufacturing.page_tagline" rows="2"></textarea>
+                </div>
+                <div class="field">
+                    <label>Footer</label>
+                    <input data-bind="sectors.manufacturing.page_footer" type="text" />
+                </div>
+                <div class="field">
+                    <label>Official website button label</label>
+                    <input data-bind="sectors.manufacturing.website_label" type="text" />
+                </div>
+                <div class="field">
+                    <label>Official website URL</label>
+                    <input data-bind="sectors.manufacturing.website" type="text" placeholder="https://..." />
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Factories</div>
+                <div class="group-sub">Drag to reorder. Each card shows on the Manufacturing page.</div>
+
+                <div class="sortable" id="manufacturing-items">
+                    <!-- populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- HOSPITALITY PANEL -->
+        <div class="panel" id="panel-hospitality">
+            <div class="group">
+                <div class="group-title">Sector card (home page)</div>
+                <div class="group-sub">How the Hospitality card looks on the home view</div>
+
+                <div class="field">
+                    <label>Card title</label>
+                    <input data-bind="sectors.hospitality.card_title" type="text" />
+                </div>
+                <div class="field">
+                    <label>Card subtitle</label>
+                    <input data-bind="sectors.hospitality.card_subtitle" type="text" />
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Hospitality page</div>
+                <div class="group-sub">Header text on the Hospitality page</div>
+
+                <div class="field">
+                    <label>Top label</label>
+                    <input data-bind="sectors.hospitality.page_label" type="text" />
+                </div>
+                <div class="field">
+                    <label>Page title</label>
+                    <input data-bind="sectors.hospitality.page_title" type="text" />
+                </div>
+                <div class="field">
+                    <label>Tagline</label>
+                    <textarea data-bind="sectors.hospitality.page_tagline" rows="2"></textarea>
+                </div>
+                <div class="field">
+                    <label>Footer</label>
+                    <input data-bind="sectors.hospitality.page_footer" type="text" />
+                </div>
+                <div class="field">
+                    <label>Official website button label</label>
+                    <input data-bind="sectors.hospitality.website_label" type="text" />
+                </div>
+                <div class="field">
+                    <label>Official website URL</label>
+                    <input data-bind="sectors.hospitality.website" type="text" placeholder="https://..." />
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Properties</div>
+                <div class="group-sub">Drag to reorder. Each card shows on the Hospitality page.</div>
+
+                <div class="sortable" id="hospitality-items">
+                    <!-- populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL/POPUP PANEL -->
+        <div class="panel" id="panel-modal">
+            <div class="group">
+                <div class="group-title">Review popup</div>
+                <div class="group-sub">The popup that appears when a factory or property is tapped</div>
+
+                <div class="field">
+                    <label>Eyebrow text (small label at top of popup)</label>
+                    <input data-bind="modal.eyebrow" type="text" />
+                </div>
+                <div class="field">
+                    <label>Review button label</label>
+                    <input data-bind="modal.review_label" type="text" />
+                </div>
+                <div class="field">
+                    <label>Website button label (only shown when a per-entity site URL is filled)</label>
+                    <input data-bind="modal.website_label" type="text" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SETTINGS PANEL -->
+        <div class="panel" id="panel-settings">
+            <div class="group">
+                <div class="group-title">Change password</div>
+                <div class="group-sub">Logs out every other session</div>
+
+                <div class="field">
+                    <label for="pw-current">Current password</label>
+                    <input id="pw-current" type="password" autocomplete="current-password" />
+                </div>
+                <div class="field">
+                    <label for="pw-new">New password (minimum 6 characters)</label>
+                    <input id="pw-new" type="password" autocomplete="new-password" />
+                </div>
+                <div class="field">
+                    <label for="pw-confirm">Confirm new password</label>
+                    <input id="pw-confirm" type="password" autocomplete="new-password" />
+                </div>
+                <button class="btn btn-gold" id="pwSubmit" type="button">Update password</button>
+                <div class="msg" id="pwMsg" role="alert" aria-live="polite"></div>
+            </div>
+
+            <div class="group">
+                <div class="group-title">Live preview</div>
+                <div class="group-sub">Open the public landing page to verify your edits</div>
+                <div class="btn-row">
+                    <a class="btn btn-ghost btn-small" href="/" target="_blank" rel="noopener">Open landing page</a>
+                    <a class="btn btn-ghost btn-small" href="/#manufacturing" target="_blank" rel="noopener">Manufacturing view</a>
+                    <a class="btn btn-ghost btn-small" href="/#hospitality" target="_blank" rel="noopener">Hospitality view</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky save bar -->
+        <div class="save-bar">
+            <button class="btn btn-ghost" id="discardBtn" type="button">Discard changes</button>
+            <button class="btn btn-primary" id="saveBtn" type="button">Save changes</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.6/Sortable.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        // ============================================================
+        //  Config
+        // ============================================================
+        const SUPABASE_URL = 'https://tblfnxaedhmwydjqngnb.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_84F0DGqG8-A01ecxVMQ0jA_hydWAwtw';
+        const TOKEN_KEY    = 'wdgroup_admin_token';
+
+        // ============================================================
+        //  Tiny helpers
+        // ============================================================
+        function $(sel, root) { return (root || document).querySelector(sel); }
+        function $$(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+        function getPath(obj, path) { return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj); }
+        function setPath(obj, path, value) {
+            const parts = path.split('.');
+            const last  = parts.pop();
+            let cur = obj;
+            for (const p of parts) {
+                if (cur[p] == null || typeof cur[p] !== 'object') {
+                    cur[p] = /^\d+$/.test(parts[parts.indexOf(p) + 1] || '') ? [] : {};
+                }
+                cur = cur[p];
+            }
+            cur[last] = value;
+            return obj;
+        }
+        function deepClone(o) { return JSON.parse(JSON.stringify(o)); }
+        function deepEqual(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+
+        function showMsg(el, text, kind, autohide = true) {
+            el.textContent = text;
+            el.className = 'msg show ' + (kind || 'info');
+            if (autohide) {
+                clearTimeout(el._t);
+                el._t = setTimeout(() => { el.className = 'msg'; }, 4200);
+            }
+        }
+        function hideMsg(el) { el.className = 'msg'; }
+
+        async function rpc(fn, params) {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`
+                },
+                body: JSON.stringify(params || {})
+            });
+            const text = await r.text();
+            let body;
+            try { body = text ? JSON.parse(text) : null; } catch { body = text; }
+            if (!r.ok) {
+                const m = (body && body.message) ? body.message : (typeof body === 'string' ? body : `error_${r.status}`);
+                const err = new Error(m);
+                err.status = r.status;
+                throw err;
+            }
+            return body;
+        }
+
+        async function loadContent() {
+            const r = await fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data`, {
+                cache: 'no-store',
+                headers: {
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`,
+                    'Accept': 'application/json',
+                    'Cache-Control': 'no-cache'
+                }
+            });
+            if (!r.ok) throw new Error('failed_to_load');
+            const rows = await r.json();
+            return rows[0] && rows[0].data ? rows[0].data : null;
+        }
+
+        // ============================================================
+        //  Auth flow
+        // ============================================================
+        const authShell  = $('#authShell');
+        const appShell   = $('#app');
+        const authForm   = $('#authForm');
+        const authTitle  = $('#authTitle');
+        const authSub    = $('#authSub');
+        const authBtn    = $('#authSubmit');
+        const authMsg    = $('#authMsg');
+        const authEmail  = $('#authEmail');
+        const authPass   = $('#authPassword');
+        const authConf   = $('#authConfirm');
+        const authConfF  = $('#authConfirmField');
+        const authEye    = $('#authEyebrow');
+
+        let isInitialSetup = false;
+
+        async function detectAuthMode() {
+            try {
+                const status = await rpc('wdgroup_status');
+                isInitialSetup = !status.password_set;
+                if (isInitialSetup) {
+                    authEye.textContent  = 'First-time setup';
+                    authTitle.textContent = 'Create your account';
+                    authSub.textContent   = 'Set the email and password you’ll use to sign in.';
+                    authBtn.textContent   = 'Create account';
+                    authConfF.style.display = '';
+                    authPass.setAttribute('autocomplete', 'new-password');
+                } else {
+                    authEye.textContent  = 'Sign in';
+                    authTitle.textContent = 'WD Group Console';
+                    authSub.textContent   = 'Enter your email and password to continue.';
+                    authBtn.textContent   = 'Sign in';
+                    authConfF.style.display = 'none';
+                    authPass.setAttribute('autocomplete', 'current-password');
+                }
+            } catch (e) {
+                showMsg(authMsg, 'Could not reach the server. Check your connection.', 'error', false);
+            }
+        }
+
+        authForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideMsg(authMsg);
+            const email = (authEmail.value || '').trim();
+            const pw    = authPass.value;
+            if (!email || email.indexOf('@') === -1) {
+                showMsg(authMsg, 'Enter a valid email address.', 'error'); return;
+            }
+            if (!pw || pw.length < 6) {
+                showMsg(authMsg, 'Password must be at least 6 characters.', 'error'); return;
+            }
+            if (isInitialSetup && pw !== authConf.value) {
+                showMsg(authMsg, 'Passwords don’t match.', 'error'); return;
+            }
+            authBtn.disabled = true;
+            authBtn.textContent = isInitialSetup ? 'Creating…' : 'Signing in…';
+            try {
+                const fn  = isInitialSetup ? 'wdgroup_set_initial_password' : 'wdgroup_login';
+                const arg = isInitialSetup
+                    ? { email_in: email, new_password: pw }
+                    : { email_in: email, password_in: pw };
+                const token = await rpc(fn, arg);
+                if (!token || typeof token !== 'string') throw new Error('unexpected_response');
+                localStorage.setItem(TOKEN_KEY, token);
+                await enterApp();
+            } catch (err) {
+                const msg = err.message || '';
+                let pretty = 'Could not sign in.';
+                if (msg.includes('wrong_credentials'))       pretty = 'Wrong email or password.';
+                else if (msg.includes('email_required'))     pretty = 'A valid email is required.';
+                else if (msg.includes('password_too_short')) pretty = 'Password must be at least 6 characters.';
+                else if (msg.includes('not_set'))            pretty = 'No account set yet. Refresh and try the setup flow.';
+                else if (msg.includes('already_set'))        pretty = 'An account is already set. Refresh and sign in.';
+                showMsg(authMsg, pretty, 'error');
+                authBtn.disabled = false;
+                authBtn.textContent = isInitialSetup ? 'Create account' : 'Sign in';
+            }
+        });
+
+        // ============================================================
+        //  App: load content into form
+        // ============================================================
+        let original  = null;  // last saved snapshot
+        let working   = null;  // editable copy
+        const saveState = $('#saveState');
+
+        function setSaveState(kind, text) {
+            saveState.className = 'save-state ' + kind;
+            saveState.textContent = text;
+        }
+        function markDirty() {
+            if (!deepEqual(working, original)) {
+                setSaveState('dirty', 'Unsaved changes');
+            } else {
+                setSaveState('saved', 'Saved');
+            }
+        }
+
+        function applyToForm() {
+            // Simple input/textarea bindings
+            $$('[data-bind]').forEach(el => {
+                if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') return;
+                const path = el.getAttribute('data-bind');
+                const val  = getPath(working, path);
+                el.value = (val == null) ? '' : String(val);
+            });
+
+            refreshImagePreview();
+            renderHomeCardsList();
+            renderItems('manufacturing');
+            renderItems('hospitality');
+        }
+
+        // Simple field listeners
+        function wireFieldListeners() {
+            $$('[data-bind]').forEach(el => {
+                if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') return;
+                el.addEventListener('input', () => {
+                    setPath(working, el.getAttribute('data-bind'), el.value);
+                    if (el.id === 'f-site-image') refreshImagePreview();
+                    markDirty();
+                });
+            });
+            wireImageUpload();
+        }
+
+        // ============================================================
+        //  Social image upload
+        // ============================================================
+        const SOCIAL_BUCKET = 'wdgroup-social';
+
+        function refreshImagePreview() {
+            const preview = $('#f-site-image-preview');
+            const url = (working.site && working.site.og_image_url) || '';
+            if (!preview) return;
+            if (!url || !/^https?:\/\//i.test(url)) {
+                preview.removeAttribute('src');
+                preview.classList.remove('broken');
+                return;
+            }
+            preview.classList.remove('broken');
+            preview.src = url;
+            preview.onerror = () => { preview.classList.add('broken'); };
+        }
+
+        function uploadStatus(text, kind) {
+            const el = $('#uploadStatus');
+            el.textContent = text || '';
+            el.className = 'upload-status' + (kind ? ' ' + kind : '');
+        }
+
+        async function uploadSocialImage(file) {
+            const ext = (file.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g, '');
+            const name = `social-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+            const url  = `${SUPABASE_URL}/storage/v1/object/${SOCIAL_BUCKET}/${name}`;
+
+            uploadStatus('Uploading…');
+
+            const r = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_KEY,
+                    'Authorization': `Bearer ${SUPABASE_KEY}`,
+                    'Content-Type': file.type || 'application/octet-stream',
+                    'x-upsert': 'true',
+                    'Cache-Control': 'max-age=31536000, immutable'
+                },
+                body: file
+            });
+
+            if (!r.ok) {
+                let msg = 'Upload failed';
+                try {
+                    const body = await r.json();
+                    if (body && body.message) msg = body.message;
+                    if (body && body.error)   msg = msg + ' — ' + body.error;
+                } catch (_) { /* keep default */ }
+                const err = new Error(msg);
+                err.status = r.status;
+                throw err;
+            }
+
+            return `${SUPABASE_URL}/storage/v1/object/public/${SOCIAL_BUCKET}/${name}`;
+        }
+
+        function wireImageUpload() {
+            const fileInput = $('#f-site-image-file');
+            const btnLabel  = $('#uploadBtnLabel');
+            const urlInput  = $('#f-site-image');
+            if (!fileInput) return;
+            fileInput.addEventListener('change', async () => {
+                const file = fileInput.files && fileInput.files[0];
+                if (!file) return;
+                if (file.size > 5 * 1024 * 1024) {
+                    uploadStatus('Image is over 5 MB — pick a smaller one', 'error');
+                    fileInput.value = '';
+                    return;
+                }
+                btnLabel.textContent = 'Uploading…';
+                try {
+                    const publicUrl = await uploadSocialImage(file);
+                    urlInput.value = publicUrl;
+                    setPath(working, 'site.og_image_url', publicUrl);
+                    refreshImagePreview();
+                    markDirty();
+                    uploadStatus(`Uploaded — remember to click Save changes`, 'success');
+                } catch (err) {
+                    uploadStatus(err.message || 'Upload failed', 'error');
+                } finally {
+                    btnLabel.textContent = 'Upload image';
+                    fileInput.value = '';
+                }
+            });
+        }
+
+        // ============================================================
+        //  Home sector cards reorder
+        // ============================================================
+        const SECTOR_META = {
+            manufacturing: { pillClass: '',     defaultLabel: 'Furniture & Factories' },
+            hospitality:   { pillClass: 'blue', defaultLabel: 'Hospitality' }
+        };
+
+        function renderHomeCardsList() {
+            const wrap  = $('#homeCardsList');
+            const order = (working.home && working.home.sectors_order) || ['manufacturing', 'hospitality'];
+            wrap.innerHTML = '';
+            order.forEach(key => {
+                const meta  = SECTOR_META[key] || {};
+                const title = (working.sectors && working.sectors[key] && working.sectors[key].card_title) || meta.defaultLabel || key;
+                const row   = document.createElement('div');
+                row.className = 'home-card-row';
+                row.setAttribute('data-key', key);
+                row.innerHTML = `
+                    <button class="drag-handle" type="button" aria-label="Drag to reorder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                    </button>
+                    <span class="sort-item-name">${escapeHtml(title)}</span>
+                    <span class="pill ${meta.pillClass}">${escapeHtml(key)}</span>
+                `;
+                wrap.appendChild(row);
+            });
+            if (typeof Sortable === 'undefined') return;
+            if (wrap._sortable) wrap._sortable.destroy();
+            wrap._sortable = Sortable.create(wrap, {
+                handle: '.drag-handle',
+                animation: 180,
+                ghostClass: 'sort-ghost',
+                chosenClass: 'sort-chosen',
+                onEnd: () => {
+                    const next = $$('.home-card-row', wrap).map(r => r.getAttribute('data-key'));
+                    if (!working.home) working.home = {};
+                    working.home.sectors_order = next;
+                    markDirty();
+                }
+            });
+        }
+
+        // ============================================================
+        //  Items (factories / properties) — fields + drag-and-drop
+        // ============================================================
+        function renderItems(sectorKey) {
+            const wrap  = $(`#${sectorKey}-items`);
+            const items = (working.sectors && working.sectors[sectorKey] && working.sectors[sectorKey].items) || [];
+            wrap.innerHTML = '';
+
+            items.forEach((item, idx) => {
+                const row = document.createElement('div');
+                row.className = 'sort-item';
+                row.setAttribute('data-idx', String(idx));
+                row.innerHTML = `
+                    <div class="sort-item-head">
+                        <button class="drag-handle" type="button" aria-label="Drag to reorder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="9" cy="6" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="18" r="1"/></svg>
+                        </button>
+                        <div class="sort-item-name" data-role="display">${escapeHtml(item.name || '(unnamed)')}${item.location ? ' · ' + escapeHtml(item.location) : ''}</div>
+                    </div>
+                    <div class="sort-item-fields">
+                        <div class="field"><label>Name</label><input data-item-field="name" type="text" value="${escapeAttr(item.name || '')}" /></div>
+                        <div class="field"><label>Location</label><input data-item-field="location" type="text" value="${escapeAttr(item.location || '')}" /></div>
+                        <div class="field full"><label>Google review link</label><input data-item-field="review" type="text" value="${escapeAttr(item.review || '')}" placeholder="https://..." /></div>
+                        <div class="field full"><label>Direct website (optional — shown as a second button in the popup)</label><input data-item-field="website" type="text" value="${escapeAttr(item.website || '')}" placeholder="https://..." /></div>
+                    </div>
+                `;
+                wrap.appendChild(row);
+
+                $$('[data-item-field]', row).forEach(inp => {
+                    inp.addEventListener('input', () => {
+                        const field = inp.getAttribute('data-item-field');
+                        const curIdx = Number(row.getAttribute('data-idx'));
+                        if (working.sectors[sectorKey].items[curIdx]) {
+                            working.sectors[sectorKey].items[curIdx][field] = inp.value;
+                            if (field === 'name' || field === 'location') {
+                                const it = working.sectors[sectorKey].items[curIdx];
+                                $('[data-role="display"]', row).textContent =
+                                    (it.name || '(unnamed)') + (it.location ? ' · ' + it.location : '');
+                            }
+                            markDirty();
+                        }
+                    });
+                });
+            });
+
+            if (typeof Sortable === 'undefined') return;
+            if (wrap._sortable) wrap._sortable.destroy();
+            wrap._sortable = Sortable.create(wrap, {
+                handle: '.drag-handle',
+                animation: 180,
+                ghostClass: 'sort-ghost',
+                chosenClass: 'sort-chosen',
+                onEnd: () => {
+                    const newOrder = $$('.sort-item', wrap).map(r => Number(r.getAttribute('data-idx')));
+                    const oldItems = working.sectors[sectorKey].items.slice();
+                    working.sectors[sectorKey].items = newOrder.map(i => oldItems[i]);
+                    // Reset the data-idx attributes to reflect the new order
+                    $$('.sort-item', wrap).forEach((r, i) => r.setAttribute('data-idx', String(i)));
+                    markDirty();
+                }
+            });
+        }
+
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function escapeAttr(s) { return escapeHtml(s); }
+
+        // ============================================================
+        //  Tabs
+        // ============================================================
+        $$('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const name = tab.getAttribute('data-tab');
+                $$('.tab').forEach(t => t.classList.toggle('active', t === tab));
+                $$('.panel').forEach(p => p.classList.toggle('active', p.id === `panel-${name}`));
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // ============================================================
+        //  Save / Discard
+        // ============================================================
+        $('#saveBtn').addEventListener('click', async () => {
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (!token) { logout(); return; }
+            setSaveState('saving', 'Saving…');
+            try {
+                await rpc('wdgroup_save', { session_token: token, new_data: working });
+                original = deepClone(working);
+                setSaveState('saved', 'Saved · now live');
+                setTimeout(() => { if (deepEqual(working, original)) setSaveState('saved', 'Saved'); }, 2200);
+            } catch (err) {
+                if ((err.message || '').includes('invalid_session')) {
+                    logout();
+                } else {
+                    setSaveState('error', 'Save failed — try again');
+                }
+            }
+        });
+
+        $('#discardBtn').addEventListener('click', () => {
+            if (deepEqual(working, original)) return;
+            if (!confirm('Discard unsaved changes?')) return;
+            working = deepClone(original);
+            applyToForm();
+            setSaveState('saved', 'Saved');
+        });
+
+        // Warn if leaving with unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            if (working && original && !deepEqual(working, original)) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
+        // ============================================================
+        //  Password change
+        // ============================================================
+        $('#pwSubmit').addEventListener('click', async () => {
+            const cur  = $('#pw-current').value;
+            const next = $('#pw-new').value;
+            const conf = $('#pw-confirm').value;
+            const msg  = $('#pwMsg');
+            hideMsg(msg);
+            if (!cur || !next) { showMsg(msg, 'Fill all three fields.', 'error'); return; }
+            if (next.length < 6) { showMsg(msg, 'New password must be at least 6 characters.', 'error'); return; }
+            if (next !== conf) { showMsg(msg, 'New passwords don’t match.', 'error'); return; }
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (!token) { logout(); return; }
+            try {
+                await rpc('wdgroup_change_password', { session_token: token, current_password: cur, new_password: next });
+                showMsg(msg, 'Password updated. Other sessions were signed out.', 'success');
+                $('#pw-current').value = $('#pw-new').value = $('#pw-confirm').value = '';
+            } catch (err) {
+                const m = (err.message || '');
+                let pretty = 'Could not update password.';
+                if (m.includes('wrong_current')) pretty = 'Current password is wrong.';
+                else if (m.includes('password_too_short')) pretty = 'New password must be at least 6 characters.';
+                else if (m.includes('invalid_session')) { logout(); return; }
+                showMsg(msg, pretty, 'error');
+            }
+        });
+
+        // ============================================================
+        //  Logout
+        // ============================================================
+        function logout() {
+            const token = localStorage.getItem(TOKEN_KEY);
+            localStorage.removeItem(TOKEN_KEY);
+            if (token) {
+                rpc('wdgroup_logout', { session_token: token }).catch(() => {});
+            }
+            appShell.style.display = 'none';
+            authShell.style.display = '';
+            authEmail.value = '';
+            authPass.value  = '';
+            authConf.value  = '';
+            detectAuthMode();
+        }
+        $('#logoutBtn').addEventListener('click', () => {
+            if (working && original && !deepEqual(working, original)) {
+                if (!confirm('You have unsaved changes. Log out anyway?')) return;
+            }
+            logout();
+        });
+
+        // ============================================================
+        //  Bootstrap
+        // ============================================================
+        async function enterApp() {
+            try {
+                const data = await loadContent();
+                if (!data) throw new Error('no_content');
+                original = data;
+                working  = deepClone(data);
+                applyToForm();
+                wireFieldListeners();
+                setSaveState('saved', 'Saved');
+                authShell.style.display = 'none';
+                appShell.style.display = '';
+                hideMsg(authMsg);
+            } catch (err) {
+                showMsg(authMsg, 'Signed in, but could not load content. Refresh to try again.', 'error', false);
+            }
+        }
+
+        (async function init() {
+            const token = localStorage.getItem(TOKEN_KEY);
+            if (token) {
+                try {
+                    const ok = await rpc('wdgroup_session_check', { session_token: token });
+                    if (ok === true) {
+                        await enterApp();
+                        return;
+                    }
+                } catch (_) { /* fall through to login */ }
+                localStorage.removeItem(TOKEN_KEY);
+            }
+            await detectAuthMode();
+        })();
+    </script>
+</body>
+</html>
+
+
+================================================================================
+                  FILE 3 of 5 :: vercel.json
+================================================================================
+
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" }
+      ]
+    },
+    {
+      "source": "/(index.html)?",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/secretadminconsole(.html)?",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive, nosnippet" },
+        { "key": "Cache-Control", "value": "no-store" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    }
+  ]
+}
+
+
+================================================================================
+                  FILE 4 of 5 :: robots.txt
+================================================================================
+
+User-agent: *
+Disallow: /secretadminconsole
+Disallow: /secretadminconsole.html
+
+
+================================================================================
+                  FILE 5 of 5 :: README.md
+================================================================================
+
+# Watan Designs — Vercel Deployment
+
+This folder contains everything needed to deploy the QR landing page to Vercel.
+
+## Files
+
+- `index.html` — the landing page
+- `vercel.json` — security headers + short cache config
+- `README.md` — this file
+
+## Deploy method 1: Drag-and-drop (fastest, no terminal)
+
+1. Go to https://vercel.com — sign up or sign in (GitHub login is fine)
+2. Click **Add New → Project**
+3. On the import screen, scroll down to the section that says **"Deploy a template"** or look for **"Or browse to upload"**
+   - Alternative quick path: visit https://vercel.com/new — there's a drag-zone there
+4. Drag this entire `vercel-deploy` folder into the upload zone
+5. Vercel detects it as a static site automatically
+6. Project name suggestion: `watan-welcome`
+7. Click **Deploy** — takes about 30 seconds
+8. You'll get a URL like `https://watan-welcome.vercel.app` — test it works
+
+## Deploy method 2: Vercel CLI (better for repeat deploys)
+
+```bash
+# One-time setup
+npm install -g vercel
+
+# From inside this folder
+cd vercel-deploy
+vercel
+
+# Follow prompts. For subsequent updates:
+vercel --prod
+```
+
+## Connect the custom subdomain
+
+After the deploy works on the default `.vercel.app` URL:
+
+1. In Vercel: **Project → Settings → Domains**
+2. Add domain: `welcome.watandesigns.sa`
+3. Vercel will show DNS records you need to add
+4. Log in to your DNS provider (Bluehost, Cloudflare, or wherever `watandesigns.sa` is managed)
+5. Add the record Vercel asks for. Usually one of:
+   - **CNAME** record: `welcome` → `cname.vercel-dns.com`
+   - (If Vercel asks for an A record instead, use that — they handle it dynamically)
+6. Wait 5–60 minutes for DNS propagation
+7. Vercel automatically provisions a free SSL certificate
+8. Visit `https://welcome.watandesigns.sa` — should load the page
+
+## Updating the page later
+
+**With CLI:** edit `index.html`, then run `vercel --prod` from this folder
+
+**With drag-and-drop:** go to your Vercel project → Deployments tab → drag the updated folder again. Or use the Vercel dashboard's web editor for tiny edits
+
+## Important: regenerate the QR after subdomain is live
+
+The QR currently encodes `https://watandesigns.sa/welcome/`. After deploying to `welcome.watandesigns.sa`, ask Claude to regenerate the QR with the new URL — old QR scans will break.
+
+## Troubleshooting
+
+**Page deployed but DNS not working:** subdomain takes time to propagate. Try `dig welcome.watandesigns.sa` in terminal or use https://dnschecker.org to confirm propagation across regions.
+
+**Got the "Vercel" branding on the deploy:** that only happens on free plan deploys when you don't have a custom domain. After you add `welcome.watandesigns.sa` it goes away.
+
+**Want to change the URL later:** add a new domain in Vercel settings, delete the old one. DNS only — no rebuild needed.
+
+
+================================================================================
+                              END OF FILE
+================================================================================
