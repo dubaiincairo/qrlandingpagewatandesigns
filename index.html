@@ -1162,7 +1162,7 @@
         // Initial paint with defaults, then async refresh from Supabase
         applyContent(DEFAULT_CONTENT);
 
-        fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data&t=${Date.now()}`, {
+        fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data`, {
             cache: 'no-store',
             headers: {
                 apikey: SUPABASE_KEY,
