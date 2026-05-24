@@ -809,7 +809,7 @@
 
         <!-- ============ HOME VIEW ============ -->
         <section class="view active" id="view-home" aria-label="WD Group home">
-            <div class="eyebrow">Est. 1993 &nbsp;·&nbsp; Saudi Arabia</div>
+            <div class="eyebrow" data-c="home.eyebrow">Est. 1993 &nbsp;·&nbsp; Saudi Arabia</div>
 
             <div class="ornament" aria-hidden="true">
                 <span class="line"></span>
@@ -817,19 +817,19 @@
                 <span class="line"></span>
             </div>
 
-            <h1>Welcome to WD Group</h1>
-            <p class="tagline">A Saudi holding group of craftsmanship &amp; hospitality</p>
+            <h1 data-c="home.title">Welcome to WD Group</h1>
+            <p class="tagline" data-c="home.tagline">A Saudi holding group of craftsmanship &amp; hospitality</p>
 
             <div class="services">
-                <span class="chip">Manufacturing</span>
-                <span class="chip">Hospitality</span>
-                <span class="chip">Since 1993</span>
+                <span class="chip" data-c="home.chips.0">Manufacturing</span>
+                <span class="chip" data-c="home.chips.1">Hospitality</span>
+                <span class="chip" data-c="home.chips.2">Since 1993</span>
             </div>
 
             <div class="divider"></div>
 
-            <div class="btn-group">
-                <button class="btn btn-gold sector-btn" type="button" data-go="manufacturing" aria-label="Explore the Furniture and Factories world">
+            <div class="btn-group" id="home-sectors">
+                <button class="btn btn-gold sector-btn" type="button" data-go="manufacturing" data-sector-card="manufacturing" aria-label="Explore the Furniture and Factories world">
                     <span class="sector-icon" aria-hidden="true">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 21V9l5-4 5 4v3h8v9"/>
@@ -839,11 +839,11 @@
                             <path d="M7 16h1"/>
                         </svg>
                     </span>
-                    <span class="sector-title">Furniture &amp; Factories</span>
-                    <span class="sector-sub">Manufacturing World</span>
+                    <span class="sector-title" data-c="sectors.manufacturing.card_title">Furniture &amp; Factories</span>
+                    <span class="sector-sub" data-c="sectors.manufacturing.card_subtitle">Manufacturing World</span>
                 </button>
 
-                <button class="btn btn-blue sector-btn" type="button" data-go="hospitality" aria-label="Explore the Hospitality world">
+                <button class="btn btn-blue sector-btn" type="button" data-go="hospitality" data-sector-card="hospitality" aria-label="Explore the Hospitality world">
                     <span class="sector-icon" aria-hidden="true">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 21V8l9-5 9 5v13"/>
@@ -854,8 +854,8 @@
                             <path d="M12 8h.01"/>
                         </svg>
                     </span>
-                    <span class="sector-title">Hospitality</span>
-                    <span class="sector-sub">Hotels &amp; Apartments</span>
+                    <span class="sector-title" data-c="sectors.hospitality.card_title">Hospitality</span>
+                    <span class="sector-sub" data-c="sectors.hospitality.card_subtitle">Hotels &amp; Apartments</span>
                 </button>
             </div>
 
@@ -867,26 +867,26 @@
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </div>
-                <div class="trust-text">Trusted across Saudi Arabia for three decades</div>
+                <div class="trust-text" data-c="home.trust">Trusted across Saudi Arabia for three decades</div>
             </div>
 
             <div class="contact">
-                <a href="tel:+966505725070" aria-label="Call WD Group">
+                <a href="tel:+966505725070" data-c-href="home.phone_link" aria-label="Call WD Group">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
                     </svg>
-                    +966 50 572 5070
+                    <span data-c="home.phone_label">+966 50 572 5070</span>
                 </a>
-                <a href="mailto:info@watandesigns.sa" aria-label="Email WD Group">
+                <a href="mailto:info@watandesigns.sa" data-c-href="home.email_link" aria-label="Email WD Group">
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>
                     </svg>
-                    info@watandesigns.sa
+                    <span data-c="home.email_label">info@watandesigns.sa</span>
                 </a>
             </div>
 
-            <div class="footer">
+            <div class="footer" data-c="home.footer">
                 WD Group &copy; 2026 &nbsp;·&nbsp; Saudi Arabia
             </div>
         </section>
@@ -899,7 +899,7 @@
                         <polyline points="15 18 9 12 15 6"/>
                     </svg>
                 </button>
-                <span class="head-label">Manufacturing</span>
+                <span class="head-label" data-c="sectors.manufacturing.page_label">Manufacturing</span>
             </div>
 
             <div class="ornament" aria-hidden="true">
@@ -908,8 +908,8 @@
                 <span class="line"></span>
             </div>
 
-            <h1>Furniture &amp; Factories</h1>
-            <p class="tagline">Craftsmanship born in Najran, delivered across the Kingdom</p>
+            <h1 data-c="sectors.manufacturing.page_title">Furniture &amp; Factories</h1>
+            <p class="tagline" data-c="sectors.manufacturing.page_tagline">Craftsmanship born in Najran, delivered across the Kingdom</p>
 
             <div class="divider"></div>
 
@@ -917,7 +917,7 @@
                 <!-- Populated by JS -->
             </div>
 
-            <div class="footer">
+            <div class="footer" data-c="sectors.manufacturing.page_footer">
                 WD Group &middot; Manufacturing Sector
             </div>
         </section>
@@ -930,7 +930,7 @@
                         <polyline points="15 18 9 12 15 6"/>
                     </svg>
                 </button>
-                <span class="head-label">Hospitality</span>
+                <span class="head-label" data-c="sectors.hospitality.page_label">Hospitality</span>
             </div>
 
             <div class="ornament" aria-hidden="true">
@@ -939,8 +939,8 @@
                 <span class="line"></span>
             </div>
 
-            <h1>Hospitality</h1>
-            <p class="tagline">A collection of hotels and serviced apartments across Saudi Arabia</p>
+            <h1 data-c="sectors.hospitality.page_title">Hospitality</h1>
+            <p class="tagline" data-c="sectors.hospitality.page_tagline">A collection of hotels and serviced apartments across Saudi Arabia</p>
 
             <div class="divider"></div>
 
@@ -948,7 +948,7 @@
                 <!-- Populated by JS -->
             </div>
 
-            <div class="footer">
+            <div class="footer" data-c="sectors.hospitality.page_footer">
                 WD Group &middot; Hospitality Sector
             </div>
         </section>
@@ -964,7 +964,7 @@
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
-            <div class="modal-eyebrow" id="modalEyebrow">Share your experience</div>
+            <div class="modal-eyebrow" id="modalEyebrow" data-c="modal.eyebrow">Share your experience</div>
             <h2 id="modalTitle">Property Name</h2>
             <div class="modal-location" id="modalLocation">Location</div>
 
@@ -973,7 +973,7 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
                     </svg>
-                    Leave a Google Review
+                    <span id="modalReviewLabel" data-c="modal.review_label">Leave a Google Review</span>
                 </a>
                 <a class="btn btn-primary" id="modalWebsite" href="#" target="_blank" rel="noopener">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -981,14 +981,16 @@
                         <line x1="2" y1="12" x2="22" y2="12"/>
                         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                     </svg>
-                    Visit Website
+                    <span id="modalWebsiteLabel" data-c="modal.website_label">Visit Website</span>
                 </a>
             </div>
         </div>
     </div>
 
     <a class="wa-fab"
+       id="waFab"
        href="https://wa.me/966505725070?text=Hello%20WD%20Group%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services."
+       data-c-href="home.whatsapp_url"
        target="_blank"
        rel="noopener"
        aria-label="Chat with WD Group on WhatsApp">
@@ -999,78 +1001,124 @@
 
     <script>
         // ============================================================
-        //  WD Group — Sector data
-        //  Fill the empty `website` and `review` URLs as they become
-        //  available. `website` is the public site, `review` is the
-        //  Google review link for that specific entity.
+        //  WD Group — Live content from Supabase, with safe fallback
         // ============================================================
-        const SECTORS = {
-            manufacturing: {
-                websiteLabel: 'WD Group — Manufacturing',
-                website: 'https://watandesigns.sa/',
-                entities: [
-                    { name: 'Alwatani Factory',       location: 'Najran', website: '', review: 'https://www.google.com/search?q=%D9%86%D8%B4%D8%A7%D8%B7%D9%8A+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A&mat=CUlBmizCpT-BEkwBTVDHnrw7EPZpgHfwveumYPBbmBc5TrmeY1b4kPcwoTzi7yhdTubN6AL0JqJXx8e9C67j8B4S1xHrfSR0qh4NwqehmycJiF45vDu0&hl=ar&authuser=2&ved=2ahUKEwj2nebc-9GUAxXEZaQEHR2nAPgQ-MgIegQIDhA5' },
-                    { name: 'Watan Designs Factory',  location: 'Najran', website: '', review: 'https://g.page/r/Cduu54JdvyfcEBM/review' },
-                    { name: 'Watani Kitchens',        location: 'Najran', website: '', review: 'https://g.page/r/CZzKCB3a6uoFEBM/review' }
-                ]
+        const SUPABASE_URL = 'https://tblfnxaedhmwydjqngnb.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_84F0DGqG8-A01ecxVMQ0jA_hydWAwtw';
+
+        // Fallback content shown if Supabase is unreachable. Keep in sync with the seed.
+        const DEFAULT_CONTENT = {
+            home: {
+                eyebrow: 'Est. 1993  ·  Saudi Arabia',
+                title: 'Welcome to WD Group',
+                tagline: 'A Saudi holding group of craftsmanship & hospitality',
+                chips: ['Manufacturing', 'Hospitality', 'Since 1993'],
+                trust: 'Trusted across Saudi Arabia for three decades',
+                phone_label: '+966 50 572 5070',
+                phone_link: 'tel:+966505725070',
+                email_label: 'info@watandesigns.sa',
+                email_link: 'mailto:info@watandesigns.sa',
+                footer: 'WD Group © 2026  ·  Saudi Arabia',
+                whatsapp_url: 'https://wa.me/966505725070?text=Hello%20WD%20Group%2C%20I%27d%20like%20to%20know%20more%20about%20your%20services.',
+                sectors_order: ['manufacturing', 'hospitality']
             },
-            hospitality: {
-                websiteLabel: 'WD Group — Hospitality',
-                website: 'https://new.swissbluehotels.com/',
-                entities: [
-                    { name: 'SwissBlue Hotel',                       location: 'Jeddah',   website: '', review: 'https://g.page/r/CTvArVxtV-_AEBM/review' },
-                    { name: 'SwissBlue Serviced Apartments',         location: 'Alzahraa', website: '', review: 'https://www.google.com/search?q=SwissBlue+Serviced+Apartments+Alzahraa+District&stick=H4sIAAAAAAAA_-NgU1I1qDA0TTZOSbSwMDQySk0xSjW3MqgwSkxJNk9MSTEzTjExNDcyXMSqH1yeWVzslFOaqhCcWlSWmZyaouBYkFhUkpuaV1Ks4JhTlZhRlJio4JJZXFKUmVwCAPLaecZbAAAA&hl=en-GB&mat=CUAhW94HvCJwElUBTVDHnmvVcjtFek2G-vvGsXff1Gpu8SZCAaUBTukcGVvJtckyjJY0JMkV8ZYXxF1xJU7VQW-gM7KIl4EJ3lz8MEs1aFgf2j0Jp8LFM3jpsZJqyFyZ&authuser=0#lrd=0x15c3da88122ed2e7:0x2adc7add63d41721,3,,,,' },
-                    { name: 'SwissBlue Serviced Apartments',         location: 'Alsamer',  website: '', review: 'https://www.google.com/search?q=SwissBlue+Serviced+Apartments+Alsamer+District&stick=H4sIAAAAAAAA_-NgU1I1qDA0TTZOMTZKM7I0tzRMSjS3MqiwNDc2STQzMUs0MjZOTUk0WsSqF1yeWVzslFOaqhCcWlSWmZyaouBYkFhUkpuaV1Ks4JhTnJibWqTgkllcUpSZXAIACq1TQ1oAAAA&hl=en-GB&mat=CUJxz3nPIZThElUBTVDHnhqEIi-F_08Lj7Z31j5KDS0fosIWxUikjNLqjW2LcLc2vEJOwfCWWOrCYXtieha4sGID1M3Dpuy82mEqJT3U7-XCl_ApF4CuRtPQH23JesAB&authuser=0#lrd=0x15c3d32f29791ba7:0x9734a646a233eda2,3,,,,' },
-                    { name: 'SwissBlue Hotel Apartments',            location: 'Jazan',    website: '', review: 'https://g.page/r/CfbAkfOseUxPEBM/review' },
-                    { name: 'Vinas Serviced Apartments',             location: 'Riyadh',   website: '', review: 'https://g.page/r/CRu-wBrpnqFREBM/review' },
-                    { name: 'Tulip Alrawdah Serviced Apartments',    location: 'Riyadh',   website: '', review: 'https://g.page/r/CXkYG9RprBbTEAI/review' }
-                ]
+            sectors: {
+                manufacturing: {
+                    card_title: 'Furniture & Factories',
+                    card_subtitle: 'Manufacturing World',
+                    page_label: 'Manufacturing',
+                    page_title: 'Furniture & Factories',
+                    page_tagline: 'Craftsmanship born in Najran, delivered across the Kingdom',
+                    page_footer: 'WD Group · Manufacturing Sector',
+                    website: 'https://watandesigns.sa/',
+                    website_label: 'Visit Official Website',
+                    items: [
+                        { id: 'alwatani', name: 'Alwatani Factory', location: 'Najran', website: '', review: 'https://www.google.com/search?q=%D9%86%D8%B4%D8%A7%D8%B7%D9%8A+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D8%B1%D9%8A&mat=CUlBmizCpT-BEkwBTVDHnrw7EPZpgHfwveumYPBbmBc5TrmeY1b4kPcwoTzi7yhdTubN6AL0JqJXx8e9C67j8B4S1xHrfSR0qh4NwqehmycJiF45vDu0&hl=ar&authuser=2&ved=2ahUKEwj2nebc-9GUAxXEZaQEHR2nAPgQ-MgIegQIDhA5' },
+                        { id: 'watandesigns_factory', name: 'Watan Designs Factory', location: 'Najran', website: '', review: 'https://g.page/r/Cduu54JdvyfcEBM/review' },
+                        { id: 'watani_kitchens', name: 'Watani Kitchens', location: 'Najran', website: '', review: 'https://g.page/r/CZzKCB3a6uoFEBM/review' }
+                    ]
+                },
+                hospitality: {
+                    card_title: 'Hospitality',
+                    card_subtitle: 'Hotels & Apartments',
+                    page_label: 'Hospitality',
+                    page_title: 'Hospitality',
+                    page_tagline: 'A collection of hotels and serviced apartments across Saudi Arabia',
+                    page_footer: 'WD Group · Hospitality Sector',
+                    website: 'https://new.swissbluehotels.com/',
+                    website_label: 'Visit Official Website',
+                    items: [
+                        { id: 'swissblue_jeddah',    name: 'SwissBlue Hotel',                    location: 'Jeddah',   website: '', review: 'https://g.page/r/CTvArVxtV-_AEBM/review' },
+                        { id: 'swissblue_alzahraa', name: 'SwissBlue Serviced Apartments',      location: 'Alzahraa', website: '', review: 'https://www.google.com/search?q=SwissBlue+Serviced+Apartments+Alzahraa+District&stick=H4sIAAAAAAAA_-NgU1I1qDA0TTZOSbSwMDQySk0xSjW3MqgwSkxJNk9MSTEzTjExNDcyXMSqH1yeWVzslFOaqhCcWlSWmZyaouBYkFhUkpuaV1Ks4JhTlZhRlJio4JJZXFKUmVwCAPLaecZbAAAA&hl=en-GB&mat=CUAhW94HvCJwElUBTVDHnmvVcjtFek2G-vvGsXff1Gpu8SZCAaUBTukcGVvJtckyjJY0JMkV8ZYXxF1xJU7VQW-gM7KIl4EJ3lz8MEs1aFgf2j0Jp8LFM3jpsZJqyFyZ&authuser=0#lrd=0x15c3da88122ed2e7:0x2adc7add63d41721,3,,,,' },
+                        { id: 'swissblue_alsamer',  name: 'SwissBlue Serviced Apartments',      location: 'Alsamer',  website: '', review: 'https://www.google.com/search?q=SwissBlue+Serviced+Apartments+Alsamer+District&stick=H4sIAAAAAAAA_-NgU1I1qDA0TTZOMTZKM7I0tzRMSjS3MqiwNDc2STQzMUs0MjZOTUk0WsSqF1yeWVzslFOaqhCcWlSWmZyaouBYkFhUkpuaV1Ks4JhTnJibWqTgkllcUpSZXAIACq1TQ1oAAAA&hl=en-GB&mat=CUJxz3nPIZThElUBTVDHnhqEIi-F_08Lj7Z31j5KDS0fosIWxUikjNLqjW2LcLc2vEJOwfCWWOrCYXtieha4sGID1M3Dpuy82mEqJT3U7-XCl_ApF4CuRtPQH23JesAB&authuser=0#lrd=0x15c3d32f29791ba7:0x9734a646a233eda2,3,,,,' },
+                        { id: 'swissblue_jazan',    name: 'SwissBlue Hotel Apartments',         location: 'Jazan',    website: '', review: 'https://g.page/r/CfbAkfOseUxPEBM/review' },
+                        { id: 'vinas_riyadh',       name: 'Vinas Serviced Apartments',          location: 'Riyadh',   website: '', review: 'https://g.page/r/CRu-wBrpnqFREBM/review' },
+                        { id: 'tulip_alrawdah',     name: 'Tulip Alrawdah Serviced Apartments', location: 'Riyadh',   website: '', review: 'https://g.page/r/CXkYG9RprBbTEAI/review' }
+                    ]
+                }
+            },
+            modal: {
+                eyebrow: 'Share your experience',
+                review_label: 'Leave a Google Review',
+                website_label: 'Visit Website'
             }
         };
 
-        // SVG icons
+        let CONTENT = DEFAULT_CONTENT;
+
+        // Tiny dotted-path resolver: getPath(obj, 'home.chips.0')
+        function getPath(obj, path) {
+            return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
+        }
+
+        // SVG icons (used inside JS-built sector buttons)
         const ICON_GLOBE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
         const ICON_STAR  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>';
         const ICON_CHEV  = '<svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
 
-        // ============================================================
-        //  Build sector buttons
-        // ============================================================
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function escapeAttr(s) { return escapeHtml(s); }
+
+        // Build all buttons (website + items) for a sector
         function buildSector(sectorKey) {
-            const sector = SECTORS[sectorKey];
+            const sector = getPath(CONTENT, `sectors.${sectorKey}`) || {};
+            const items  = sector.items || [];
             const container = document.getElementById(`${sectorKey}-buttons`);
             if (!container) return;
 
             const websiteBtnClass = sectorKey === 'hospitality' ? 'btn-blue' : 'btn-primary';
             const outlineClass    = sectorKey === 'hospitality' ? 'btn-outline btn-outline-blue' : 'btn-outline';
+            const websiteLabel    = escapeHtml(sector.website_label || 'Visit Official Website');
 
             const html = [];
 
-            // Official website
             html.push(`
                 <a class="btn ${websiteBtnClass}"
-                   href="${sector.website || '#'}"
+                   href="${escapeAttr(sector.website || '#')}"
                    target="_blank"
                    rel="noopener"
                    ${!sector.website ? 'data-pending="website"' : ''}
-                   aria-label="Visit ${sector.websiteLabel} official website">
+                   aria-label="Visit ${escapeAttr(sectorKey)} sector official website">
                     ${ICON_GLOBE}
-                    Visit Official Website
+                    ${websiteLabel}
                 </a>
             `);
 
-            // Entities
-            sector.entities.forEach((entity, idx) => {
+            items.forEach((item, idx) => {
                 html.push(`
                     <button class="btn ${outlineClass}"
                             type="button"
-                            data-sector="${sectorKey}"
+                            data-sector="${escapeAttr(sectorKey)}"
                             data-entity="${idx}"
-                            aria-label="Review options for ${entity.name} ${entity.location}">
+                            aria-label="Review options for ${escapeAttr(item.name)} ${escapeAttr(item.location || '')}">
                         <span class="leading-icon" aria-hidden="true">${ICON_STAR}</span>
                         <span class="btn-meta">
-                            <span class="btn-name">${entity.name}</span>
-                            <span class="btn-loc">${entity.location}</span>
+                            <span class="btn-name">${escapeHtml(item.name)}</span>
+                            <span class="btn-loc">${escapeHtml(item.location || '')}</span>
                         </span>
                         ${ICON_CHEV}
                     </button>
@@ -1080,8 +1128,52 @@
             container.innerHTML = html.join('');
         }
 
-        buildSector('manufacturing');
-        buildSector('hospitality');
+        // Reorder home sector cards based on content.home.sectors_order
+        function applyHomeOrder() {
+            const wrap  = document.getElementById('home-sectors');
+            const order = (CONTENT.home && CONTENT.home.sectors_order) || ['manufacturing', 'hospitality'];
+            if (!wrap) return;
+            order.forEach(key => {
+                const card = wrap.querySelector(`[data-sector-card="${key}"]`);
+                if (card) wrap.appendChild(card); // moves to end in order
+            });
+        }
+
+        // Apply content to all data-c / data-c-href bindings, then rebuild lists
+        function applyContent(content) {
+            CONTENT = content || DEFAULT_CONTENT;
+
+            document.querySelectorAll('[data-c]').forEach(el => {
+                const val = getPath(CONTENT, el.getAttribute('data-c'));
+                if (val !== undefined && val !== null && String(val).length) {
+                    el.textContent = val;
+                }
+            });
+            document.querySelectorAll('[data-c-href]').forEach(el => {
+                const val = getPath(CONTENT, el.getAttribute('data-c-href'));
+                if (val) el.setAttribute('href', val);
+            });
+
+            applyHomeOrder();
+            buildSector('manufacturing');
+            buildSector('hospitality');
+        }
+
+        // Initial paint with defaults, then async refresh from Supabase
+        applyContent(DEFAULT_CONTENT);
+
+        fetch(`${SUPABASE_URL}/rest/v1/wdgroup_content?id=eq.main&select=data`, {
+            headers: {
+                apikey: SUPABASE_KEY,
+                Authorization: `Bearer ${SUPABASE_KEY}`,
+                Accept: 'application/json'
+            }
+        })
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(rows => {
+                if (rows && rows[0] && rows[0].data) applyContent(rows[0].data);
+            })
+            .catch(() => { /* keep defaults */ });
 
         // ============================================================
         //  View navigation
@@ -1095,41 +1187,28 @@
             views.forEach(v => {
                 const isTarget = v === target;
                 v.classList.toggle('active', isTarget);
-                if (!isTarget) {
-                    v.setAttribute('hidden', '');
-                } else {
-                    v.removeAttribute('hidden');
-                }
+                if (!isTarget) v.setAttribute('hidden', '');
+                else           v.removeAttribute('hidden');
             });
 
-            // Restart enter animation
             target.style.animation = 'none';
-            // Force reflow
             void target.offsetWidth;
             target.style.animation = '';
 
-            // Update history
             if (push) {
                 const url = name === 'home' ? '#' : `#${name}`;
                 history.pushState({ view: name }, '', url);
             }
 
-            // Scroll back to top of card for a polished feel
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Move focus to first heading for accessibility
             const h = target.querySelector('h1');
-            if (h) h.setAttribute('tabindex', '-1');
-            if (h) h.focus({ preventScroll: true });
+            if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
         }
 
         document.addEventListener('click', (e) => {
             const navBtn = e.target.closest('[data-go]');
-            if (navBtn) {
-                const name = navBtn.getAttribute('data-go');
-                showView(name);
-                return;
-            }
+            if (navBtn) { showView(navBtn.getAttribute('data-go')); return; }
 
             const entityBtn = e.target.closest('[data-entity]');
             if (entityBtn) {
@@ -1142,10 +1221,9 @@
             const pendingLink = e.target.closest('[data-pending]');
             if (pendingLink) {
                 e.preventDefault();
-                // Soft, friendly fallback — link not yet available
                 pendingLink.setAttribute('aria-disabled', 'true');
                 const original = pendingLink.innerHTML;
-                pendingLink.innerHTML = original.replace(/Visit Official Website|Leave a Google Review|Visit Website/, 'Coming soon');
+                pendingLink.innerHTML = original.replace(/(Visit Official Website|Leave a Google Review|Visit Website)/, 'Coming soon');
                 setTimeout(() => { pendingLink.innerHTML = original; pendingLink.removeAttribute('aria-disabled'); }, 1600);
             }
         });
@@ -1158,11 +1236,8 @@
             }
         });
 
-        // Honor initial hash (e.g. shared link to #hospitality)
         const initial = location.hash.replace('#', '');
-        if (['manufacturing', 'hospitality'].includes(initial)) {
-            showView(initial, false);
-        }
+        if (['manufacturing', 'hospitality'].includes(initial)) showView(initial, false);
 
         // ============================================================
         //  Review popup
@@ -1177,17 +1252,16 @@
         let lastFocused = null;
 
         function openReviewModal(sectorKey, idx) {
-            const entity = SECTORS[sectorKey] && SECTORS[sectorKey].entities[idx];
-            if (!entity) return;
+            const item = getPath(CONTENT, `sectors.${sectorKey}.items.${idx}`);
+            if (!item) return;
 
             lastFocused = document.activeElement;
 
-            modalTitle.textContent = entity.name;
-            modalLoc.textContent   = entity.location;
+            modalTitle.textContent = item.name || '';
+            modalLoc.textContent   = item.location || '';
 
-            // Review button
-            if (entity.review) {
-                modalReview.href = entity.review;
+            if (item.review) {
+                modalReview.href = item.review;
                 modalReview.removeAttribute('data-pending');
                 modalReview.removeAttribute('aria-disabled');
             } else {
@@ -1195,9 +1269,8 @@
                 modalReview.setAttribute('data-pending', 'review');
             }
 
-            // Website button (hide if not set yet)
-            if (entity.website) {
-                modalWeb.href = entity.website;
+            if (item.website) {
+                modalWeb.href = item.website;
                 modalWeb.style.display = '';
                 modalWeb.removeAttribute('data-pending');
             } else {
@@ -1209,7 +1282,6 @@
             modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
 
-            // Focus first action
             setTimeout(() => modalReview.focus(), 50);
         }
 
@@ -1217,15 +1289,11 @@
             modal.classList.remove('open');
             modal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            if (restoreFocus && lastFocused && lastFocused.focus) {
-                lastFocused.focus();
-            }
+            if (restoreFocus && lastFocused && lastFocused.focus) lastFocused.focus();
         }
 
         modalClose.addEventListener('click', () => closeModal());
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
         });
